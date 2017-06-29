@@ -1,0 +1,324 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  height: 100%;
+  width: 100%;
+  font-family: 'Open Sans';
+  color: #222;
+}
+
+/**
+* Text
+**/
+
+h1 {
+  font-family: 'Rokkitt';
+  display: inline-block;
+  font-size: 36px;
+  text-align: center;
+  margin: 90px 4px 26px;
+}
+
+.text-column {
+  max-width: 750px;
+  display: inline-block;
+}
+
+/**
+* Container
+**/
+
+.container {
+  padding-top: 60px;
+  min-height: 100%;
+  box-sizing: border-box;
+  margin-bottom: -90px;
+  text-align: center;
+}
+
+/**
+* Footer
+**/
+
+.push,
+.footer {
+  height: 90px;
+}
+
+.footer {
+  background: #787878;
+  width: 100%;
+  box-shadow: 0px 0.05em 0.3em rgba(0, 0, 0, 0.5);
+  text-align: center;
+  z-index: 10;
+  position: relative;
+}
+
+.footer img.yale-wordmark {
+  height: 50px;
+  margin-top: 21px;
+  display: inline-block;
+}
+
+/**
+* Buttons
+**/
+
+.button {
+  padding: 11px 30px;
+  background: #FDD835;
+  text-transform: uppercase;
+  font-weight: 600;
+  display: inline-block;
+  border-radius: 4px;
+  color: #444;
+  cursor: pointer;
+}
+
+/**
+* Header
+**/
+
+.header {
+  height: 60px;
+  width: 100%;
+  box-shadow: 0px 0.05em 0.3em rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  background: #fff;
+}
+
+.header .brand {
+  display: inline-block;
+  max-height: 100%;
+}
+
+.header .site-name {
+  font-family: 'Special Elite';
+  font-size: 27px;
+  padding: 19px 30px;
+  display: inline-block;
+  color: #444;
+}
+
+.header .links {
+  display: inline-block;
+  float: right;
+  margin: 17px 60px;
+}
+
+.header .links a {
+  text-decoration: none;
+  text-decoration: none;
+  color: #444;
+  font-size: 18px;
+  text-transform: uppercase;
+  font-weight: 100;
+  letter-spacing: 0.05em;
+  margin: 0 20px;
+}
+
+/**
+* Hero
+**/
+
+.hero {
+  overflow: hidden;
+  position: absolute;
+  top: 60px;
+  right: 0;
+  bottom: 90px;
+  left: 0;
+  text-align: center;
+  background: url(/assets/images/manuscript-banner.png) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+.hero .hero-overlay {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: rgba(0,0,0,0.65);
+}
+
+.hero .tagline {
+  color: #fff;
+  font-weight: 600;
+  font-size: 32px;
+  padding: 34vh 0 40px;
+  text-align: center;
+  font-family: 'Special Elite';
+}
+
+/**
+* Variants
+**/
+
+.genetic-preface {
+  text-align: justify;
+}
+
+.variant-text {
+  text-align: left;
+  margin: 20px 0;
+  position: relative;
+  border-right: 16px solid #FDD835;
+  background: #f5f5f5;
+  padding: 8px 0;
+}
+
+/**
+* Style rows based on number of variants
+**/
+
+.variant-text .row {
+  overflow: hidden;
+}
+
+.variant-text .row.no-variants {
+  background: #f5f5f5;
+}
+
+.variant-text .row.some-variants {
+  background: #eae9e9;
+}
+
+.variant-text .row.many-variants {
+  background: #dfdcdc;
+}
+
+/**
+* Expand/shrink variants for text onclick
+**/
+
+.variant-text input[type='checkbox'] {
+  display: none;
+}
+
+.variant-text .row-label {
+  display: block;
+  padding: 0 10px 2px;
+}
+
+.variant-text .row-label.has-variants {
+  cursor: pointer;
+}
+
+.variant-text .row-label.has-variants:after {
+  content: '+';
+  position: absolute;
+  right: 5px;
+  font-size: 20px;
+  color: #444;
+  text-align: center;
+  transition: transform .3s;
+  margin-top: -1px;
+}
+
+.variant-text input:checked ~ .row-label.has-variants:after {
+  transform: rotate(180deg);
+}
+
+.variant-text .row-variants {
+  max-height: 0px;
+  transition: max-height .1s;
+}
+
+.variant-text input:checked ~ .row-variants {
+  max-height: 100px;
+}
+
+/**
+* Style each variant row
+**/
+
+.variant-text .variant {
+  padding: 0px 9px;
+  background: #fff;
+  border-left: 1px solid #efefef;
+  position: relative;
+}
+
+.variant-text .variant:first-child {
+  padding-top: 2px;
+}
+
+.variant-text .variant:last-child {
+  padding-bottom: 2px;
+}
+
+.variant-text .variant div {
+  display: inline-block;
+}
+
+/**
+* Stlye citations
+**/
+
+.variant-text .citations {
+  position: absolute;
+  right: 5px;
+}
+
+.variant-text .citations a {
+  color: #717171;
+  text-decoration: none;
+  font-size: 14px;
+  vertical-align: top;
+}
+
+/**
+* Helpers
+**/
+
+.variant-text .citations .lightbox-link {
+  width: 17px;
+  opacity: 0.6;
+  margin: 1px 0 0 5px;
+}
+
+.clear-both {
+  clear: both;
+}
+
+/**
+* Image lightbox
+**/
+
+.lightbox {
+  display: none;
+  position: fixed;
+  z-index: 999;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  top: 0;
+  left: 0;
+  background: rgba(0,0,0,0.8);
+}
+
+.lightbox img {
+  max-width: 90%;
+  max-height: 80%;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translateY(-50%) translateX(-50%);
+}
+
+.lightbox:target {
+  outline: none;
+  display: block;
+  width: 100%;
+  height: 100%;
+}

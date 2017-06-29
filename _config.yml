@@ -1,0 +1,6 @@
+collections:
+  variants:
+    output: true
+    authors:
+      output: true
+      permalink: /variants/:author/:title.html
