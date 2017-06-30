@@ -15,14 +15,14 @@ layout: default
       {% assign teaser = author.bio %}
       {% capture title %}{{author.first_name }} {{ author.last_name }}{% endcapture %}
       {% capture url %}/texts/{{ author.last_name | downcase }}{% endcapture %}
-      {%- include card.html
+      {% include card.html
         image=image
         title=title
         href=url
         label='View Author'
         teaser=teaser
         grayscale=true
-      -%}
+      %}
     {% endfor %}
   </div>
   <div class='push'></div>
