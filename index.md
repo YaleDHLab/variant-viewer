@@ -5,7 +5,7 @@ layout: default
   <div class='hero'>
     <div class='hero-overlay'>
       <div class='tagline'>{{ site.tagline }}</div>
-      <a href='/texts/'>
+      <a href='{{ site.baseurl }}/texts'>
         <div class='button'>Enter</div>
       </a>
     </div>
