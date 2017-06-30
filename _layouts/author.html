@@ -14,22 +14,22 @@ layout: default
       <div class='author-teaser'>{{ author.bio }}</div>
     </div>
     <div class='card-container'>
-      {%- for text in site.data.texts -%}
-        {%- if text.author_id == page.author_id -%}
+      {% for text in site.data.texts %}
+        {% if text.author_id == page.author_id %}
           {% assign image = text.cover_image %}
           {% assign title = text.title %}
           {% assign teaser = text.teaser %}
           {% capture url %}/texts/{{ author.last_name | downcase }}/{{ text.text_id }}{% endcapture %}
-          {%- include card.html
+          {% include card.html
             image=image
             title=title
             href=url
             label='Read Variants'
             teaser=teaser
             grayscale=true
-          -%}
-        {%- endif -%}
-      {%- endfor -%}
+          %}
+        {% endif %}
+      {% endfor %}
     </div>
   </div>
   <div class='push'></div>
