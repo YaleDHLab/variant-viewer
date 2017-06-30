@@ -1,6 +1,14 @@
 collections:
-  variants:
+  texts:
     output: true
     authors:
       output: true
-      permalink: /variants/:author/:title.html
+      permalink: /texts/:author/:title.html
+
+# rgb values for coloring
+light: 253, 216, 53
+dark: 40, 40, 40
+
+# site text
+tagline: Visualizing Ezra Pound's revisions
+name: Genetic Pound

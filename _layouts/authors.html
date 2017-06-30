@@ -1,0 +1,29 @@
+---
+layout: default
+---
+
+<div class='container'>
+  {% include duotone.html %}
+  <div class='text-column authors-page'>
+    <h1>Edition Authors</h1>
+    <div class='authors-preface'>Each of the authors below had a dynamic writing process that involved heavy changes to manuscript drafts. Click on an author to explore their writing process.</div>
+  </div>
+  <div class='card-container'>
+    {% for a in site.data.authors %}
+      {% assign author = a[1] %}
+      {% assign image = author.image %}
+      {% assign teaser = author.bio %}
+      {% capture title %}{{author.first_name }} {{ author.last_name }}{% endcapture %}
+      {% capture url %}/texts/{{ author.last_name | downcase }}{% endcapture %}
+      {%- include card.html
+        image=image
+        title=title
+        href=url
+        label='View Author'
+        teaser=teaser
+        grayscale=true
+      -%}
+    {% endfor %}
+  </div>
+  <div class='push'></div>
+</div>

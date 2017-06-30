@@ -2,25 +2,26 @@
 layout: default
 ---
 
-{% assign author = site.data.authors[page.author_id] %}
-{% assign work = site.data.variants[page.work_id] %}
+{% for text in site.data.texts %}
+  {% if text.text_id == page.text_id %}
+    {% assign text = text %}
+  {% endif %}
+{% endfor %}
 {% assign row_id = 0 %}
 
 <div class='container'>
-  <div class='text-column'>
-    <h1>{{ work.title }}</h1>
+  <div class='text-column variants-page'>
+    <h1>{{ text.title }}</h1>
     <div class='genetic-preface'>
       Lorem ipsum dolor sit amet, vel magnis phasellus placerat lectus pede, scelerisque tellus porta libero et, maecenas dictum erat adipiscing rhoncus neque volutpat, auctor dictum. Eu vestibulum, mi arcu hac nam, diam tellus sed felis mattis. Odio in wisi eros, odio dui lacinia tempor mi amet, ligula augue nec curabitur, sem et, fuga ante. Id non pharetra, elit sed, faucibus dictum.
     </div>
     <div class='variant-text'>
-    {% for section in work.sections %}
+    {% for section in text.sections %}
       {% for line in section.lines %}
       {% if line.variants.size == 0 %}
         <div class='row no-variants'>
-      {% elsif line.variants.size < 3 %}
-        <div class='row some-variants'>
       {% else %}
-        <div class='row many-variants'>
+        <div class='row some-variants'>
       {% endif %}
         <input type='checkbox' id='row-{{ row_id }}'>
         {% if line.variants.size > 0 %}
@@ -39,10 +40,10 @@ layout: default
                 {% endfor %}
                 {% for image in reference.images %}
                   <a href='#{{ image }}'>
-                    <img class='lightbox-link' src='/assets/images/image-icon.svg'>
+                    <img class='lightbox-link' src='/assets/images/icons/image-icon.svg'>
                   </a>
                   <a href='#_' class='lightbox' id='{{ image }}'>
-                    <img class='lightbox-image' src='/assets/images/{{ image }}'>
+                    <img class='lightbox-image' src='{{ image }}'>
                   </a>
                 {% endfor %}
               {% endfor %}

@@ -1,0 +1,16 @@
+<a href='{{ include.href }}'>
+  <div class='card'>
+    {% if include.grayscale == true %}
+      <div class='card-image background-image grayscale'
+        style='background-image: url({{ include.image }})'></div>
+    {% else %}
+      <div class='card-image background-image'
+        style='background-image: url({{ include.image }})'></div>
+    {% endif %}
+    <div class='card-body'>
+      <div class='card-title'>{{ include.title }}</div>
+      <div class='card-teaser'>{{ include.teaser | truncatewords: 30 }}</div>
+      <div class='button'>{{ include.label }} &raquo;</div>
+    </div>
+  </div>
+</a>
