@@ -44,7 +44,7 @@ def rand_range(_min, _max):
   return range(randint(_min, _max))
 
 text_id_int = -1
-for author_id_int in rand_range(3, 4):
+for author_id_int in rand_range(2, 3):
   first_name = select_one(names)
   last_name = select_one(names)
   start_year = randint(1500, 1900)
