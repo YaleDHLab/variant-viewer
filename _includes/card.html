@@ -1,4 +1,4 @@
-<a href='{{ include.href }}'>
+<a href='{{ include.href | prepend: site.baseurl }}'>
   <div class='card'>
     {% if include.grayscale == true %}
       <div class='card-image background-image grayscale'

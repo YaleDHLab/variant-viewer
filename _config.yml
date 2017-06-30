@@ -12,3 +12,6 @@ dark: 40, 40, 40
 # site text
 tagline: Visualizing Ezra Pound's revisions
 name: Genetic Pound
+
+# repo name
+baseurl: /variant-viewer

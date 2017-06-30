@@ -36,14 +36,14 @@ layout: default
             <div class='citations'>
               {% for reference in variant.references %}
                 {% for footnote in reference.footnotes %}
-                  <a href='/citations/{{ footnote }}'>{{ footnote }}</a>
+                  <a href='{{ site.baseurl }}/citations/{{ footnote }}'>{{ footnote }}</a>
                 {% endfor %}
                 {% for image in reference.images %}
                   <a href='#{{ image }}'>
-                    <img class='lightbox-link' src='/assets/images/icons/image-icon.svg'>
+                    <img class='lightbox-link' src='{{ site.baseurl }}/assets/images/icons/image-icon.svg'>
                   </a>
                   <a href='#_' class='lightbox' id='{{ image }}'>
-                    <img class='lightbox-image' src='{{ image }}'>
+                    <img class='lightbox-image' src='{{ image | prepend: site.baseurl }}'>
                   </a>
                 {% endfor %}
               {% endfor %}

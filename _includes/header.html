@@ -1,15 +1,15 @@
 <div class='header'>
   <div class='brand'>
     <div class='logo'></div>
-    <a href='/#'>
+    <a href='{{ site.baseurl }}/#'>
       <div class='site-name'>{{ site.name }}</div>
     </a>
   </div>
   <div class='links'>
     {% if site.data.authors.size > 1 %}
-    <a href='/texts'>Authors</a>
+    <a href='{{ site.baseurl }}/texts'>Authors</a>
     {% endif %}
-    <a href='/references'>References</a>
-    <a href='/about'>About</a>
+    <a href='{{ site.baseurl }}/references'>References</a>
+    <a href='{{ site.baseurl }}/about'>About</a>
   </div>
 </div>

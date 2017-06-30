@@ -9,14 +9,14 @@ layout: default
     <div class='text-column'>
     {% include duotone.html %}
       <h1>{{ author.first_name }} {{ author.last_name }}</h1>
-      <div class='author-headshot duotone background-image'
-        style='background-image:url({{ author.image }})'></div>
+      <div class='author-headshot grayscale background-image'
+        style='background-image:url({{ author.image | prepend: site.baseurl }})'></div>
       <div class='author-teaser'>{{ author.bio }}</div>
     </div>
     <div class='card-container'>
       {% for text in site.data.texts %}
         {% if text.author_id == page.author_id %}
-          {% assign image = text.cover_image %}
+          {% capture image %}{{ site.baseurl }}{{text.cover_image}}{% endcapture %}
           {% assign title = text.title %}
           {% assign teaser = text.teaser %}
           {% capture url %}/texts/{{ author.last_name | downcase }}/{{ text.text_id }}{% endcapture %}
