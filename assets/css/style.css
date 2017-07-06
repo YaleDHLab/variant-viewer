@@ -62,8 +62,9 @@ img {
   min-height: 100%;
   box-sizing: border-box;
   text-align: center;
-  overflow: auto;
   width: 800px;
+  max-width: 100%;
+  overflow: auto;
   margin: 0 auto -90px;
 }
 
@@ -268,7 +269,8 @@ img {
 }
 
 .variant-text input:checked ~ .row-label.has-variants:after {
-  transform: rotate(180deg);
+  transform: scale(1.2) rotate(225deg);
+  right: 6px;
 }
 
 .variant-text .row-variants {
@@ -390,15 +392,15 @@ img {
 }
 
 .author-headshot {
-  width: 400px;
-  height: 300px;
+  width: 100%;
+  height: 330px;
   display: inline-block;
 }
 
 .author-teaser {
   text-align: justify;
   display: inline-block;
-  margin-top: 20px;
+  margin: 20px 0 5px;
 }
 
 /**
