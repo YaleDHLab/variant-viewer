@@ -13,7 +13,7 @@ layout: default
       {% assign author = a[1] %}
       {% capture image %}{{ site.baseurl }}{{ author.image }}{% endcapture %}
       {% assign teaser = author.bio %}
-      {% capture title %}{{author.first_name }} {{ author.last_name }}{% endcapture %}
+      {% capture title %}{{ author.first_name }} {{ author.last_name }}{% endcapture %}
       {% capture url %}/texts/{{ author.last_name | downcase }}{% endcapture %}
       {% include card.html
         image=image

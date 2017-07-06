@@ -9,7 +9,7 @@ layout: default
     <div class='text-column'>
     {% include duotone.html %}
       <h1>{{ author.first_name }} {{ author.last_name }}</h1>
-      <div class='author-headshot grayscale background-image'
+      <div class='author-headshot duotone background-image'
         style='background-image:url({{ author.image | prepend: site.baseurl }})'></div>
       <div class='author-teaser'>{{ author.bio }}</div>
     </div>
