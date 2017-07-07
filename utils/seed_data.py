@@ -1,6 +1,6 @@
 from collections import defaultdict
 from random import randint
-import codecs, yaml, json, glob, os, shutil, glob
+import codecs, yaml, json, glob, os, shutil, glob, copy
 
 ##
 # Seed app data
@@ -71,8 +71,16 @@ for author_id_int in rand_range(2, 3):
       'teaser': select_one(teasers),
       'cover_image': '/utils/' + select_one(manuscript_images),
       'title': ' '.join([select_one(title_words) for _ in rand_range(2, 3)]),
-      'sections': []
+      'genetic_data': {},
+      'diplomatic_data': {},
+      'print_data': {}
     }
+
+    ##
+    # Genetic data
+    ##
+
+    work['genetic_data']['sections'] = []
 
     for section_id in rand_range(2, 5):
       section = {
@@ -89,10 +97,11 @@ for author_id_int in rand_range(2, 3):
         line_words = line['line'].split()
         for variant_id in rand_range(0, 3):
           variant_text = line['line']
-          for n_words_to_change in rand_range(2, 4):
-            word_to_replace = ' ' + select_one(line_words) + ' '
-            replacement_word = ' ' + select_one(words) + ' '
-            variant_text = variant_text.replace(word_to_replace, replacement_word)
+          if len(variant_text.split()) > 4:
+            for n_words_to_change in rand_range(2, 4):
+              word_to_replace = ' ' + select_one(line_words) + ' '
+              replacement_word = ' ' + select_one(words) + ' '
+              variant_text = variant_text.replace(word_to_replace, replacement_word)
 
           variant = {
             'line_variant': variant_text,
@@ -114,7 +123,50 @@ for author_id_int in rand_range(2, 3):
             variant['references'].append(reference)
           line['variants'].append(variant)
         section['lines'].append(line)
-      work['sections'].append(section)
+      work['genetic_data']['sections'].append(section)
+
+    ##
+    # Diplomatic data
+    ##
+
+    work['diplomatic_data']['pages'] = []
+
+    for page_id in rand_range(20, 30):
+      page_text = ''
+      page_image = '/utils/' + select_one(manuscript_images)
+      for line_id in rand_range(10, 40):
+        whitespace_vals = rand_range(3, 10)
+        leading_whitespace = ' '.join(['' for i in whitespace_vals])
+        line_words = select_one(lines).split()
+
+        # add text effects
+        word_effects = [
+          'sup',
+          'sub',
+          'i',
+          'b',
+          's'
+        ]
+
+        for effect in word_effects:
+          random_variable = rand_range(1,8)
+          if random_variable[-1] == 4:
+            word_idx = select_one(range(0, len(line_words)))
+            word = line_words[word_idx]
+            line_words[word_idx] = '<' + effect + '>' + word + '</' + effect + '>'
+
+        # add some staggered whitespace between words
+        line_text = ''
+        for word in line_words:
+          word_whitespace = ' '.join(['' for i in rand_range(2, 6)])
+          line_text += word_whitespace + word
+        page_text += leading_whitespace + line_text + '<br/>'
+
+      work['diplomatic_data']['pages'].append({
+        'image': page_image,
+        'text': page_text
+      })
+
     outgoing_texts.append(work)
 
 with open('../_data/texts.json', 'w') as out:
@@ -135,16 +187,23 @@ for i in glob.glob('../_texts/*'):
 authors = json.load(open('../_data/authors.json'))
 texts = json.load(open('../_data/texts.json'))
 
+# build the authors page
+with open('../_texts/index.html', 'w') as out:
+  out.write('---\nlayout: authors\n---\n')
+
+# build the individual author text views
 for i in texts:
   author_id = i['author_id']
   author = authors[author_id]
 
-  # build the author's directory
+  ##
+  # Author index
+  ##
+
   author_dir = '../_texts/' + author['last_name'].lower()
   if not os.path.exists(author_dir):
     os.makedirs(author_dir)
 
-  # build the author's index file
   index_content =  '---\n'
   index_content += 'layout: author\n'
   index_content += 'author_id: ' + author_id + '\n'
@@ -153,12 +212,33 @@ for i in texts:
   with open(author_dir + '/index.html', 'w') as out:
     out.write(index_content)
 
-  # build the author's work files
-  text_content =  '---\n'
-  text_content += 'layout: variants\n'
-  text_content += 'author_id: ' + author_id + '\n'
-  text_content += 'text_id: ' + i['text_id'] + '\n'
-  text_content += '---\n'
+  ##
+  # Text files
+  ##
 
-  with open(author_dir + '/' + i['text_id'] + '.html', 'w') as out:
-    out.write(text_content)
+  text_id = i['text_id']
+  text_dir = author_dir + '/' + text_id
+
+  if not os.path.exists(text_dir):
+    os.makedirs(text_dir)
+
+  ##
+  # Reused content lines
+  ##
+
+  content_lines = [
+    '---',
+    'author_id: ' + author_id,
+    'text_id: ' + text_id,
+    '---'
+  ]
+
+  ##
+  # Write individual files
+  ##
+
+  for layout in ['genetic', 'diplomatic', 'print']:
+    header_lines = copy.copy(content_lines)
+    header_lines.insert(1, 'layout: ' + layout)
+    with open(text_dir + '/' + layout + '.html', 'w') as out:
+      out.write( '\n'.join(header_lines) )

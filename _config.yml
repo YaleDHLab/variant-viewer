@@ -3,7 +3,10 @@ collections:
     output: true
     authors:
       output: true
-      permalink: /texts/:author/:title.html
+      genetic:
+        permalink: /texts/:author/:title/genetic.html
+      diplomatic:
+        permalink: /texts/:author/:title/diplomatic.html
 
 # rgb values for coloring
 light: 253, 216, 53

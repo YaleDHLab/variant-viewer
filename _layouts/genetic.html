@@ -1,0 +1,57 @@
+---
+layout: default
+---
+{% include get_current_text.html %}
+{%- assign row_id = 0 -%}
+<div class='container'>
+  <div class='text-column variants-page'>
+    <h1>{{ text.title }}</h1>
+    <div class='genetic-preface'>
+      Lorem ipsum dolor sit amet, vel magnis phasellus placerat lectus pede, scelerisque tellus porta libero et, maecenas dictum erat adipiscing rhoncus neque volutpat, auctor dictum. Eu vestibulum, mi arcu hac nam, diam tellus sed felis mattis. Odio in wisi eros, odio dui lacinia tempor mi amet, ligula augue nec curabitur, sem et, fuga ante. Id non pharetra, elit sed, faucibus dictum.
+    </div>
+    <div class='variant-text'>
+      <div class='variant-stripe'></div>
+      {%- for section in text.genetic_data.sections -%}
+        {%- for line in section.lines -%}
+        {%- if line.variants.size == 0 -%}
+          <div class='row no-variants'>
+        {%- else -%}
+          <div class='row some-variants'>
+        {%- endif -%}
+          <input type='checkbox' id='row-{{ row_id }}'>
+          {%- if line.variants.size > 0 -%}
+            <label class='row-label has-variants' for='row-{{ row_id }}'>{{ line.line }}</label>
+          {%- else -%}
+            <label class='row-label has-no-variants' for='row-{{ row_id }}'>{{ line.line }}</label>
+          {%- endif -%}
+          <div class='row-variants'>
+            {%- for variant in line.variants -%}
+            <div class='variant'>
+              <div>{{ variant.line_variant }}</div>
+              <div class='citations'>
+                {%- for reference in variant.references -%}
+                  {%- for footnote in reference.footnotes -%}
+                    <a href='{{ site.baseurl }}/citations/{{ footnote }}'>{{ footnote }}</a>
+                  {%- endfor -%}
+                  {%- for image in reference.images -%}
+                    <a href='#{{ image }}'>
+                      <img class='lightbox-link' src='{{ site.baseurl }}/assets/images/icons/image-icon.svg'>
+                    </a>
+                    <a href='#_' class='lightbox' id='{{ image }}'>
+                      <img class='lightbox-image' src='{{ image | prepend: site.baseurl }}'>
+                    </a>
+                  {%- endfor -%}
+                {%- endfor -%}
+              </div>
+            </div>
+            {%- endfor -%}
+          </div>
+        </div>
+        {%- assign row_id = row_id | plus: 1 -%}
+        {%- endfor -%}
+      {%- endfor -%}
+    </div>
+    <div class='clear-both'></div>
+  </div>
+  <div class='push'></div>
+</div>

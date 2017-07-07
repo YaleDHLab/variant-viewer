@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  {% include head.html %}
+  <body>
+    {% include header.html %}
+    {% include get_current_text.html %}
+    {%- assign page_id = 0 -%}
+    <div class='diplomatic-page'>
+      {% for page in text.diplomatic_data.pages %}
+        <div class='page' id={{ page_id }}>
+          <div class='page-image-container'>
+            <img class='page-image'
+            src='{{ page.image | prepend: site.baseurl }}'>
+          </div>
+          <div class='page-text-container'>
+            <div class='page-text'>{{ page.text }}</div>
+          </div>
+        </div>
+        {%- assign page_id = page_id | plus: 1 -%}
+      {% endfor %}
+    </div>
+    <div class='diplomatic-footer'>
+      <div class='next-page'>Next</div>
+      <div class='previous-page'>Previous</div>
+    </div>
+  </body>
+  <script>if (!window.location.hash) window.location.hash = 0;</script>
+</html>
