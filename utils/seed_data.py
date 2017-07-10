@@ -19,18 +19,19 @@ d = defaultdict(
 
 outgoing_authors = {}
 outgoing_texts = []
+seed_resources = 'seed-resources'
 
 # get poem seed data
-text = codecs.open('resources/seed-txt/seed_lines.txt').read()
+text = codecs.open(seed_resources + '/seed-txt/seed_lines.txt').read()
 lines = text.split('\n')
 words = text.split()
 
 # images seed data
-manuscript_images = glob.glob('resources/seed-images/manuscript/*')
-author_images = glob.glob('resources/seed-images/author/*')
+manuscript_images = glob.glob(seed_resources + '/seed-images/manuscript/*')
+author_images = glob.glob(seed_resources + '/seed-images/author/*')
 
-bio = codecs.open('resources/seed-txt/seed_bio.txt').read()
-teasers = codecs.open('resources/seed-txt/seed_teasers.txt').read().split('\n\n')
+bio = codecs.open(seed_resources + '/seed-txt/seed_bio.txt').read()
+teasers = codecs.open(seed_resources + '/seed-txt/seed_teasers.txt').read().split('\n\n')
 names = ['Thomas', 'Widdle', 'Pinkerton', 'Orion', 'Wommersly', 'Smith', 'Franz', 'Lambda', 'Mancin']
 title_words = ['Tree', 'Branches', 'Moss', 'River', 'Stone', 'Ship', 'Sails']
 footnotes = ['II.342', 'IV.4', 'III.78', 'VI.12', 'VII.62']
@@ -44,7 +45,7 @@ def rand_range(_min, _max):
   return range(randint(_min, _max))
 
 text_id_int = -1
-for author_id_int in rand_range(2, 3):
+for author_id_int in rand_range(2, 4):
   first_name = select_one(names)
   last_name = select_one(names)
   start_year = randint(1500, 1900)
@@ -88,7 +89,7 @@ for author_id_int in rand_range(2, 3):
         'lines': []
       }
 
-      for line_id in rand_range(10, 50):
+      for line_id in rand_range(10, 25):
         line = {
           'line': select_one(lines),
           'variants': []
@@ -134,9 +135,14 @@ for author_id_int in rand_range(2, 3):
     for page_id in rand_range(20, 30):
       page_text = ''
       page_image = '/utils/' + select_one(manuscript_images)
-      for line_id in rand_range(10, 40):
+      in_margin_div = False
+      drew_margin_line = False
+
+      for line_id in rand_range(10, 25):
         whitespace_vals = rand_range(3, 10)
-        leading_whitespace = ' '.join(['' for i in whitespace_vals])
+        # to randomize the line's leading whitespace
+        # leading_whitespace = ' '.join(['' for i in whitespace_vals])
+        leading_whitespace = ''
         line_words = select_one(lines).split()
 
         # add text effects
@@ -145,7 +151,8 @@ for author_id_int in rand_range(2, 3):
           'sub',
           'i',
           'b',
-          's'
+          's',
+          'u'
         ]
 
         for effect in word_effects:
@@ -158,9 +165,27 @@ for author_id_int in rand_range(2, 3):
         # add some staggered whitespace between words
         line_text = ''
         for word in line_words:
-          word_whitespace = ' '.join(['' for i in rand_range(2, 6)])
+          # to randomize whitespace between words:
+          # word_whitespace = ' '.join(['' for i in rand_range(2, 6)])
+          word_whitespace = ' '
           line_text += word_whitespace + word
-        page_text += leading_whitespace + line_text + '<br/>'
+
+        # build up the final text line
+        composed_line_text = leading_whitespace + line_text + '<br/>'
+
+        # add marginal lines periodically
+        random_variable = rand_range(1,8)
+        if random_variable[-1] == 6 and in_margin_div == False and drew_margin_line == False:
+          page_text += '<div class="margin-line">' + composed_line_text
+          drew_margin_line = True
+          in_margin_div = True
+
+        elif in_margin_div:
+          page_text += composed_line_text + '</div>'
+          in_margin_div = False
+
+        else:
+          page_text += composed_line_text
 
       work['diplomatic_data']['pages'].append({
         'image': page_image,
