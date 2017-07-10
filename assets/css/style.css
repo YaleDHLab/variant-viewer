@@ -58,7 +58,7 @@ img {
 **/
 
 .container {
-  padding-top: 40px;
+  padding-top: 60px;
   min-height: 100%;
   box-sizing: border-box;
   text-align: center;
@@ -72,10 +72,6 @@ img {
   width: 750px;
   display: inline-block;
   margin: 0 20px;
-}
-
-.text-column.variants-page {
-  padding-bottom: 40px;
 }
 
 .card-container {
@@ -207,6 +203,10 @@ img {
 * Variants
 **/
 
+.variants-page.text-column {
+  padding-bottom: 40px;
+}
+
 .variants-page .genetic-preface {
   text-align: justify;
 }
@@ -217,7 +217,6 @@ img {
   position: relative;
   border-right: 16px solid rgb(253, 216, 53);
   background: #f5f5f5;
-  padding: 8px 0;
 }
 
 /**
@@ -225,7 +224,7 @@ img {
 **/
 
 .variant-text .row {
-  overflow: hidden;
+  position: relative;
 }
 
 .variant-text .row.no-variants {
@@ -238,6 +237,16 @@ img {
 
 .variant-text .row.many-variants {
   background: #dfdcdc;
+}
+
+.variant-text .row-number {
+  position: absolute;
+  left: -56px;
+  top: 5px;
+  text-align: right;
+  width: 50px;
+  font-size: 0.75em;
+  color: #888;
 }
 
 /**
@@ -264,7 +273,6 @@ img {
   font-size: 20px;
   color: #444;
   text-align: center;
-  transition: transform .3s;
   margin-top: -1px;
 }
 
@@ -276,10 +284,23 @@ img {
 .variant-text .row-variants {
   max-height: 0px;
   transition: max-height .1s;
+  overflow: hidden;
+}
+
+.variant-text .row-variants:after {
+  content: '';
+  position: absolute;
+  right: 0;
 }
 
 .variant-text input:checked ~ .row-variants {
   max-height: 100px;
+  position: relative;
+  width: 750px;
+  z-index: 1;
+  background: #fff;
+  box-sizing: border-box;
+  border-right: 16px solid rgba(253, 216, 53, 0.4);
 }
 
 /**
@@ -298,7 +319,7 @@ img {
 }
 
 .variant-text .variant:last-child {
-  padding-bottom: 2px;
+  padding-bottom: 4px;
 }
 
 .variant-text .variant div {
@@ -312,6 +333,7 @@ img {
 .variant-text .citations {
   position: absolute;
   right: 5px;
+  top: .25em;
 }
 
 .variant-text .citations a {
@@ -441,9 +463,15 @@ img {
   line-height: 1.4em;
 }
 
+.author-page .card-teaser {
+  height: 97px;
+  overflow: hidden;
+}
+
 .card .button {
   display: inline-block;
   margin-top: 15px;
+  margin-right: 7px;
   padding: 5px 11px;
   font-size: 14px;
 }
@@ -460,4 +488,97 @@ img {
 
 .breadcrumb a {
   color: #666;
+}
+
+/**
+* Diplomatic view
+**/
+
+.diplomatic-page .page {
+  display: none;
+  position: absolute;
+  top: 60px;
+  right: 0;
+  bottom: 50px;
+  left: 0;
+  height: auto;
+  width: auto;
+}
+
+.diplomatic-page .page:target {
+  display: block;
+}
+
+.diplomatic-page .page-image-container {
+  width: 50%;
+  display: inline-block;
+  height: 100%;
+  overflow: auto;
+  padding: 50px;
+  box-sizing: border-box;
+  background: rgba(0,0,0,0.9);
+}
+
+.diplomatic-page .page-image-container img {
+  width: 100%;
+}
+
+.diplomatic-page .page-text-container {
+  text-align: left;
+  width: auto;
+  display: inline-block;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 50%;
+  max-height: 100%;
+  overflow: auto;
+  text-align: center;
+}
+
+.diplomatic-page .page-text {
+  display: inline-block;
+  white-space: pre;
+  padding: 50px 25px 30px;
+  line-height: 1.7em;
+  text-align: left;
+}
+
+.diplomatic-footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 50px;
+  background: #848484;
+  text-align: center;
+}
+
+.diplomatic-footer-buttons {
+  display: inline-block;
+  margin-top: 10px;
+}
+
+.diplomatic-footer-buttons div {
+  color: #fff;
+  font-size: 1.2em;
+  display: inline-block;
+  margin: 0 7px;
+  cursor: pointer;
+}
+
+.diplomatic-footer-buttons .deactivated {
+  cursor: default;
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+/**
+* Diplomatic markup helpers
+**/
+
+.margin-line {
+  border-left: 2px solid #5e5e5e;
+  margin-left: -5px;
+  padding-left: 3px;
 }
