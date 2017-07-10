@@ -1,0 +1,5 @@
+{%- for text in site.data.texts -%}
+  {%- if text.text_id == page.text_id -%}
+    {%- assign text = text -%}
+  {%- endif -%}
+{%- endfor -%}

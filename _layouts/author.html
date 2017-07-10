@@ -16,17 +16,23 @@ layout: default
     <div class='card-container'>
       {% for text in site.data.texts %}
         {% if text.author_id == page.author_id %}
-          {% capture image %}{{ site.baseurl }}{{text.cover_image}}{% endcapture %}
+          {% assign image = text.cover_image | prepend: site.baseurl %}
           {% assign title = text.title %}
           {% assign teaser = text.teaser %}
-          {% capture url %}/texts/{{ author.last_name | downcase }}/{{ text.text_id }}{% endcapture %}
+          {% assign lastname = author.last_name | downcase %}
+          {% assign text_id = text.text_id %}
+          {% capture text_url %}/texts/{{ lastname }}/{{ text_id }}{% endcapture %}
+          {% capture genetic_url %}{{ text_url }}/genetic.html{% endcapture %}
+          {% capture diplomatic_url %}{{ text_url }}/diplomatic.html{% endcapture %}
           {% include card.html
             image=image
             title=title
-            href=url
-            label='Read Variants'
             teaser=teaser
             grayscale=true
+            href=genetic_url
+            label='Read Variants'
+            href_two=diplomatic_url
+            label_two='Read Manuscript'
           %}
         {% endif %}
       {% endfor %}
