@@ -228,7 +228,7 @@ img {
 **/
 
 .variant-text .row {
-  overflow: hidden;
+  position: relative;
 }
 
 .variant-text .row.no-variants {
@@ -241,6 +241,16 @@ img {
 
 .variant-text .row.many-variants {
   background: #dfdcdc;
+}
+
+.variant-text .row-number {
+  position: absolute;
+  left: -56px;
+  top: 5px;
+  text-align: right;
+  width: 50px;
+  font-size: 0.75em;
+  color: #888;
 }
 
 /**
@@ -278,6 +288,7 @@ img {
 .variant-text .row-variants {
   max-height: 0px;
   transition: max-height .1s;
+  overflow: hidden;
 }
 
 .variant-text .row-variants:after {
@@ -288,7 +299,7 @@ img {
 
 .variant-text input:checked ~ .row-variants {
   max-height: 100px;
-  position: absolute;
+  position: relative;
   width: 750px;
   z-index: 1;
   background: #fff;
@@ -507,8 +518,9 @@ img {
   display: inline-block;
   height: 100%;
   overflow: auto;
-  padding: 50px 25px 0 50px;
+  padding: 50px;
   box-sizing: border-box;
+  background: rgba(0,0,0,0.9);
 }
 
 .diplomatic-page .page-image-container img {
@@ -526,13 +538,15 @@ img {
   left: 50%;
   max-height: 100%;
   overflow: auto;
+  text-align: center;
 }
 
 .diplomatic-page .page-text {
   display: inline-block;
   white-space: pre;
-  padding-top: 50px;
-  line-height: 2em;
+  padding: 50px 25px 30px;
+  line-height: 1.7em;
+  text-align: left;
 }
 
 .diplomatic-footer {
@@ -540,5 +554,35 @@ img {
   bottom: 0;
   width: 100%;
   height: 50px;
-  background: #fff;
+  background: #848484;
+  text-align: center;
+}
+
+.diplomatic-footer-buttons {
+  display: inline-block;
+  margin-top: 10px;
+}
+
+.diplomatic-footer-buttons div {
+  color: #fff;
+  font-size: 1.2em;
+  display: inline-block;
+  margin: 0 7px;
+  cursor: pointer;
+}
+
+.diplomatic-footer-buttons .deactivated {
+  cursor: default;
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+/**
+* Diplomatic markup helpers
+**/
+
+.margin-line {
+  border-left: 2px solid #5e5e5e;
+  margin-left: -5px;
+  padding-left: 3px;
 }

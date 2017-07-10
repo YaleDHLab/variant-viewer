@@ -20,9 +20,11 @@
       {% endfor %}
     </div>
     <div class='diplomatic-footer'>
-      <div class='next-page'>Next</div>
-      <div class='previous-page'>Previous</div>
+      <div class='diplomatic-footer-buttons'>
+        <div class='previous-page'>&lsaquo; Previous</div>
+        <div class='next-page'>Next &rsaquo;</div>
+      </div>
     </div>
   </body>
-  <script>if (!window.location.hash) window.location.hash = 0;</script>
+  <script src='{{ site.baseurl }}/assets/js/diplomatic.js'></script>
 </html>
