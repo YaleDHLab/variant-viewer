@@ -1,42 +1,100 @@
 (function() {
   if (!window.location.hash) window.location.hash = 0;
 
-  var nextPage = document.querySelector('.next-page'),
-      previousPage = document.querySelector('.previous-page'),
-      diplomaticPage = document.querySelector('.diplomatic-page'),
-      pages = diplomaticPage.querySelectorAll('.page'),
-      hash;
+  var pages = document.querySelectorAll('.page-content'),
+      container = document.querySelector('.diplomatic-footer-buttons'),
+      buttons = container.querySelectorAll('.diplomatic-footer-button'),
+      pageButtons = container.querySelectorAll('.page'),
+      startButton = container.querySelector('.start'),
+      endButton = container.querySelector('.end'),
+      previousButton = container.querySelector('.previous'),
+      nextButton = container.querySelector('.next'),
+      hash = parseInt(window.location.hash.substring(1));
 
-  nextPage.addEventListener('click', function() {
-    setHash();
-    updateLocation(1);
-  })
+  updateButtons();
 
-  previousPage.addEventListener('click', function() {
-    setHash();
-    updateLocation(-1);
-  })
+  /**
+  * Attach event listeners
+  **/
 
-  function updateLocation(offset) {
-    window.location.href = '#' + (hash + offset);
-    hash += offset;
+  for (var i=0; i<buttons.length; i++) {
+    var button = buttons[i];
+
+    button.addEventListener('click', function(e) {
+      var elem = e.target;
+      while (!elem.hasAttribute('data-page')) {
+        elem = elem.parentNode;
+      }
+
+      hash = parseInt(elem.dataset.page);
+      window.location.href = '#' + hash;
+      updateButtons();
+    })
+  }
+
+  /**
+  * Callbacks for event listeners
+  **/
+
+  function updateButtons() {
+    updateButtonLabels();
+    updateHighlightedPage();
     updateButtonStates();
   }
 
-  function setHash() {
-    hash = parseInt(window.location.hash.substring(1));
+  function updateHighlightedPage() {
+    var pageClass = 'diplomatic-footer-button page ';
+
+    for (var i=0; i<pageButtons.length; i++) {
+      var pageButton = pageButtons[i],
+          pageNumber = parseInt(pageButton.dataset.page);
+
+      pageButton.className = pageNumber === hash ?
+          pageClass + 'active' :
+          pageClass;
+    }
+  }
+
+  function updateButtonLabels() {
+    if ((hash > 2) && (hash < pages.length-2)) {
+      var startVal = hash-2;
+    } else if (hash <= 2) {
+      var startVal = 1;
+    } else {
+      var startVal = pages.length - 5;
+    }
+
+    for (var i=0; i<pageButtons.length; i++) {
+      var button = pageButtons[i];
+      button.dataset.page = startVal + i;
+      button.textContent = startVal + i;
+    }
+
+    previousButton.dataset.page = hash - 1;
+    nextButton.dataset.page = hash + 1;
   }
 
   function updateButtonStates() {
-    previousPage.className = hash === 0 ?
-        'previous-page deactivated'
-      : 'previous-page'
+    var buttonClass = 'diplomatic-footer-button ',
+        startClass = buttonClass + ' start ',
+        endClass = buttonClass + ' end ',
+        previousClass = buttonClass + ' previous ',
+        nextClass = buttonClass + ' next ';
 
-    nextPage.className = hash === pages.length -1 ?
-        'next-page deactivated'
-      : 'next-page'
+    startButton.className = hash === 1 ?
+        startClass + 'deactivated'
+      : startClass;
+
+    previousButton.className = hash === 1 ?
+        previousClass + 'deactivated'
+      : previousClass;
+
+    nextButton.className = hash === pages.length-1 ?
+        nextClass + 'deactivated'
+      : nextClass;
+
+    endButton.className = hash === pages.length-1 ?
+        endClass + 'deactivated'
+      : endClass;
   }
-
-  setHash();
-  updateButtonStates();
 })()

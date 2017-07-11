@@ -7,7 +7,7 @@
     {%- assign page_id = 0 -%}
     <div class='diplomatic-page'>
       {% for page in text.diplomatic_data.pages %}
-        <div class='page' id={{ page_id }}>
+        <div class='page-content' id={{ page_id }}>
           <div class='page-image-container'>
             <img class='page-image'
             src='{{ page.image | prepend: site.baseurl }}'>
@@ -21,8 +21,23 @@
     </div>
     <div class='diplomatic-footer'>
       <div class='diplomatic-footer-buttons'>
-        <div class='previous-page'>&lsaquo; Previous</div>
-        <div class='next-page'>Next &rsaquo;</div>
+        <div class='diplomatic-footer-button start' data-page='1'>
+          <span>&laquo;</span>
+        </div>
+        <div class='diplomatic-footer-button previous' data-page='1'>
+          <span>&lsaquo;</span>
+        </div>
+        <div class='diplomatic-footer-button page' data-page='1'>1</div>
+        <div class='diplomatic-footer-button page' data-page='2'>2</div>
+        <div class='diplomatic-footer-button page' data-page='3'>3</div>
+        <div class='diplomatic-footer-button page' data-page='4'>4</div>
+        <div class='diplomatic-footer-button page' data-page='5'>5</div>
+        <div class='diplomatic-footer-button next' data-page='6'>
+          <span>&rsaquo;</span>
+        </div>
+        <div class='diplomatic-footer-button end' data-page='{{ page_id | minus: 1 }}'>
+          <span>&raquo;</span>
+        </div>
       </div>
     </div>
   </body>
