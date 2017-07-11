@@ -4,7 +4,7 @@
   <body>
     {% include header.html %}
     {% include get_current_text.html %}
-    {%- assign page_id = 0 -%}
+    {%- assign page_id = 1 -%}
     <div class='diplomatic-page'>
       {% for page in text.diplomatic_data.pages %}
         <div class='page-content' id={{ page_id }}>

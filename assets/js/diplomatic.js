@@ -1,5 +1,5 @@
 (function() {
-  if (!window.location.hash) window.location.hash = 0;
+  if (!window.location.hash) window.location.hash = 1;
 
   var pages = document.querySelectorAll('.page-content'),
       container = document.querySelector('.diplomatic-footer-buttons'),
@@ -61,7 +61,7 @@
     } else if (hash <= 2) {
       var startVal = 1;
     } else {
-      var startVal = pages.length - 5;
+      var startVal = pages.length - 4;
     }
 
     for (var i=0; i<pageButtons.length; i++) {
@@ -89,11 +89,11 @@
         previousClass + 'deactivated'
       : previousClass;
 
-    nextButton.className = hash === pages.length-1 ?
+    nextButton.className = hash === pages.length ?
         nextClass + 'deactivated'
       : nextClass;
 
-    endButton.className = hash === pages.length-1 ?
+    endButton.className = hash === pages.length ?
         endClass + 'deactivated'
       : endClass;
   }
