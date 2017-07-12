@@ -2,8 +2,8 @@
   if (!window.location.hash) window.location.hash = 1;
 
   var pages = document.querySelectorAll('.page-content'),
-      container = document.querySelector('.diplomatic-footer-buttons'),
-      buttons = container.querySelectorAll('.diplomatic-footer-button'),
+      container = document.querySelector('.page-buttons'),
+      buttons = container.querySelectorAll('.page-button'),
       pageButtons = container.querySelectorAll('.page'),
       startButton = container.querySelector('.start'),
       endButton = container.querySelector('.end'),
@@ -43,7 +43,7 @@
   }
 
   function updateHighlightedPage() {
-    var pageClass = 'diplomatic-footer-button page ';
+    var pageClass = 'page-button page ';
 
     for (var i=0; i<pageButtons.length; i++) {
       var pageButton = pageButtons[i],
@@ -75,7 +75,7 @@
   }
 
   function updateButtonStates() {
-    var buttonClass = 'diplomatic-footer-button ',
+    var buttonClass = 'page-button ',
         startClass = buttonClass + ' start ',
         endClass = buttonClass + ' end ',
         previousClass = buttonClass + ' previous ',
