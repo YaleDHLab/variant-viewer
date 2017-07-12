@@ -1,7 +1,7 @@
 ---
 layout: default
 ---
-
+{% include header.html %}
 <div class='container'>
   {% include duotone.html %}
   <div class='text-column authors-page'>
@@ -14,7 +14,7 @@ layout: default
       {% capture image %}{{ site.baseurl }}{{ author.image }}{% endcapture %}
       {% assign teaser = author.bio %}
       {% capture title %}{{ author.first_name }} {{ author.last_name }}{% endcapture %}
-      {% capture url %}/texts/{{ author.last_name | downcase }}{% endcapture %}
+      {% capture url %}/authors/{{ author.last_name | downcase }}{% endcapture %}
       {% include card.html
         image=image
         title=title

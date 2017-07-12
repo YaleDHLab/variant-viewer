@@ -2,9 +2,11 @@
 <html>
   {% include head.html %}
   <body>
-    {% include header.html %}
     {% include get_current_text.html %}
-    {%- assign page_id = 0 -%}
+    {% include get_current_author.html %}
+    {% include text_breadcrumb.html %}
+    {% include header.html breadcrumb=breadcrumb_html %}
+    {%- assign page_id = 1 -%}
     <div class='diplomatic-page'>
       {% for page in text.diplomatic_data.pages %}
         <div class='page-content' id={{ page_id }}>
@@ -18,28 +20,47 @@
         </div>
         {%- assign page_id = page_id | plus: 1 -%}
       {% endfor %}
+      </div>
     </div>
     <div class='diplomatic-footer'>
-      <div class='diplomatic-footer-buttons'>
-        <div class='diplomatic-footer-button start' data-page='1'>
+      <div class='page-buttons'>
+        <div class='page-button start' data-page='1'>
           <span>&laquo;</span>
         </div>
-        <div class='diplomatic-footer-button previous' data-page='1'>
+        <div class='page-button previous' data-page='1'>
           <span>&lsaquo;</span>
         </div>
-        <div class='diplomatic-footer-button page' data-page='1'>1</div>
-        <div class='diplomatic-footer-button page' data-page='2'>2</div>
-        <div class='diplomatic-footer-button page' data-page='3'>3</div>
-        <div class='diplomatic-footer-button page' data-page='4'>4</div>
-        <div class='diplomatic-footer-button page' data-page='5'>5</div>
-        <div class='diplomatic-footer-button next' data-page='6'>
+        <div class='page-button page' data-page='1'>1</div>
+        <div class='page-button page' data-page='2'>2</div>
+        <div class='page-button page' data-page='3'>3</div>
+        <div class='page-button page' data-page='4'>4</div>
+        <div class='page-button page' data-page='5'>5</div>
+        <div class='page-button next' data-page='6'>
           <span>&rsaquo;</span>
         </div>
-        <div class='diplomatic-footer-button end' data-page='{{ page_id | minus: 1 }}'>
+        <div class='page-button end' data-page='{{ page_id | minus: 1 }}'>
           <span>&raquo;</span>
+        </div>
+      </div>
+      <div class='layout-buttons'>
+        <div class='text-image-layout layout-button active'>
+          <img class='image-icon layout-icon black' src='{{ site.baseurl }}/assets/images/icons/image-icon-black.png'>
+          <img class='image-icon layout-icon white' src='{{ site.baseurl }}/assets/images/icons/image-icon-white.png'>
+          <span>|</span>
+          <img class='text-icon layout-icon black' src='{{ site.baseurl }}/assets/images/icons/align-left-icon-black.png'>
+          <img class='text-icon layout-icon white' src='{{ site.baseurl }}/assets/images/icons/align-left-icon-white.png'>
+        </div>
+        <div class='image-layout layout-button'>
+          <img class='image-icon layout-icon black' src='{{ site.baseurl }}/assets/images/icons/image-icon-black.png'>
+          <img class='image-icon layout-icon white' src='{{ site.baseurl }}/assets/images/icons/image-icon-white.png'>
+        </div>
+        <div class='text-layout layout-button'>
+          <img class='text-icon layout-icon black' src='{{ site.baseurl }}/assets/images/icons/align-left-icon-black.png'>
+          <img class='text-icon layout-icon white' src='{{ site.baseurl }}/assets/images/icons/align-left-icon-white.png'>
         </div>
       </div>
     </div>
   </body>
-  <script src='{{ site.baseurl }}/assets/js/diplomatic.js'></script>
+  <script src='{{ site.baseurl }}/assets/js/diplomatic-pagination.js'></script>
+  <script src='{{ site.baseurl }}/assets/js/diplomatic-layout.js'></script>
 </html>
