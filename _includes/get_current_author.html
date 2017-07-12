@@ -1,0 +1,8 @@
+{%- if text -%}
+  {%- for author_hash in site.data.authors -%}
+    {%- assign author_id = author_hash[0] -%}
+    {%- if author_id == text.author_id -%}
+      {%- assign author = author_hash[1] -%}
+    {%- endif -%}
+  {%- endfor -%}
+{%- endif -%}

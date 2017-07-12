@@ -1,9 +1,13 @@
 ---
 layout: default
 ---
-
-{% assign author = site.data.authors[page.author_id] %}
-
+{%- assign author = site.data.authors[page.author_id] -%}
+{%- capture authors_route %}{{ site.baseurl }}/authors/{% endcapture -%}
+{%- capture author_route %}{{ site.baseurl }}/authors/{{ author.last_name | downcase }}{% endcapture -%}
+{%- capture authors_tag %}<a href={{ authors_route }}>Authors &rsaquo;</a>{% endcapture -%}
+{%- capture author_tag %}<a href={{ author_route }}>{{ author.last_name }}</a>{% endcapture -%}
+{%- capture breadcrumb_html %}{{ authors_tag }} {{ author_tag}}{% endcapture -%}
+{% include header.html breadcrumb=breadcrumb_html %}
 <div class='container'>
   <div class='author-page'>
     <div class='text-column'>
@@ -21,7 +25,7 @@ layout: default
           {% assign teaser = text.teaser %}
           {% assign lastname = author.last_name | downcase %}
           {% assign text_id = text.text_id %}
-          {% capture text_url %}/texts/{{ lastname }}/{{ text_id }}{% endcapture %}
+          {% capture text_url %}/authors/{{ lastname }}/{{ text_id }}{% endcapture %}
           {% capture genetic_url %}{{ text_url }}/genetic.html{% endcapture %}
           {% capture diplomatic_url %}{{ text_url }}/diplomatic.html{% endcapture %}
           {% include card.html

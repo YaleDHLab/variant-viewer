@@ -2,6 +2,10 @@
 layout: default
 ---
 {% include get_current_text.html %}
+{% include get_current_author.html %}
+{% include text_breadcrumb.html %}
+{% include header.html breadcrumb=breadcrumb_html %}
+
 {%- assign row_id = 1 -%}
 <div class='container'>
   <div class='text-column variants-page'>
