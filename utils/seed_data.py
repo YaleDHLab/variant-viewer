@@ -36,6 +36,8 @@ names = ['Thomas', 'Widdle', 'Pinkerton', 'Orion', 'Wommersly', 'Smith', 'Franz'
 title_words = ['Tree', 'Branches', 'Moss', 'River', 'Stone', 'Ship', 'Sails']
 footnotes = ['II.342', 'IV.4', 'III.78', 'VI.12', 'VII.62']
 
+root_output_directory = '../_authors'
+
 def select_one(l):
   '''Return a random selection from a list'''
   return l[randint(0, len(l)-1)]
@@ -204,8 +206,12 @@ with open('../_data/authors.json', 'w') as out:
 # Seed app views
 ##
 
+# build the root output directory if it doesn't exist
+if not os.path.exists(root_output_directory):
+  os.makedirs(root_output_directory)
+
 # delete extant views // beware!
-for i in glob.glob('../_texts/*'):
+for i in glob.glob(root_output_directory + '/*'):
   if 'index.html' not in i:
     shutil.rmtree(i)
 
@@ -213,7 +219,7 @@ authors = json.load(open('../_data/authors.json'))
 texts = json.load(open('../_data/texts.json'))
 
 # build the authors page
-with open('../_texts/index.html', 'w') as out:
+with open(root_output_directory + '/index.html', 'w') as out:
   out.write('---\nlayout: authors\n---\n')
 
 # build the individual author text views
@@ -225,7 +231,7 @@ for i in texts:
   # Author index
   ##
 
-  author_dir = '../_texts/' + author['last_name'].lower()
+  author_dir = root_output_directory + '/' + author['last_name'].lower()
   if not os.path.exists(author_dir):
     os.makedirs(author_dir)
 

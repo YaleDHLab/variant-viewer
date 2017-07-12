@@ -88,7 +88,7 @@ img {
 }
 
 .footer {
-  background: #787878;
+  background: #676565;
   width: 100%;
   box-shadow: 0px 0.05em 0.3em rgba(0, 0, 0, 0.5);
   text-align: center;
@@ -140,9 +140,17 @@ img {
 .header .site-name {
   font-family: 'Special Elite';
   font-size: 27px;
-  padding: 19px 30px;
+  padding: 19px 0 19px 30px;
   display: inline-block;
   color: #444;
+}
+
+.header .site-logo {
+  display: inline-block;
+  top: 0px;
+  width: 19px;
+  left: -1px;
+  position: relative;
 }
 
 .header .links {
@@ -481,9 +489,11 @@ img {
 **/
 
 .breadcrumb {
-  float: left;
-  margin-top: 25px;
+  display: inline-block;
+  text-transform: uppercase;
+  font-size: 12px;
   color: #666;
+  margin-left: 20px;
 }
 
 .breadcrumb a {
@@ -503,6 +513,7 @@ img {
   left: 0;
   height: auto;
   width: auto;
+  background: rgba(0,0,0,0.9);
 }
 
 .diplomatic-page .page-content:target {
@@ -514,9 +525,9 @@ img {
   display: inline-block;
   height: 100%;
   overflow: auto;
-  padding: 50px;
+  padding: 50px 25px 50px 50px;
   box-sizing: border-box;
-  background: rgba(0,0,0,0.9);
+  text-align: center;
 }
 
 .diplomatic-page .page-image-container img {
@@ -540,9 +551,14 @@ img {
 .diplomatic-page .page-text {
   display: inline-block;
   white-space: pre;
-  padding: 50px 25px 30px;
+  padding: 50px 40px 30px;
   line-height: 1.7em;
   text-align: left;
+  background-color: #f1f1f1;
+  box-sizing: border-box;
+  margin: 55px 50px 50px 20px;
+  font-family: 'Inconsolata', monospace;
+  border-radius: 2px;
 }
 
 /**
@@ -550,36 +566,39 @@ img {
 **/
 
 .diplomatic-footer {
-  position: absolute;
+  position: fixed;
   bottom: 0;
   width: 100%;
   height: 70px;
-  background: #676565;
+  background: #f2f0f0;
   text-align: center;
+  box-shadow: 0px -0.02em 0.3em rgba(0, 0, 0, 0.5);
 }
 
-.diplomatic-footer-buttons {
+.diplomatic-footer .page-buttons,
+.diplomatic-footer .layout-buttons {
   display: inline-block;
   margin-top: 20px;
   border-radius: 3px;
 }
 
-.diplomatic-footer-buttons div {
+.diplomatic-footer .page-buttons div {
   color: #000;
   display: inline-block;
   padding: 3px 0;
   cursor: pointer;
-  border: 1px solid #999;
-  border-radius: 3px;
+  border: 1px solid #b2b2b2;
+  border-radius: 5px;
   font-size: 17px;
-  background: linear-gradient(#d5d5d5, #cfcccc);
+  background: linear-gradient(#d7d7d7, #d1d1d1);
   width: 28px;
-  -moz-user-select: none;
-  -webkit-user-select: none;
 }
 
-.diplomatic-footer-button.page.active {
-  background: #fff;
+.diplomatic-footer .page-button.page.active,
+.diplomatic-footer .layout-button.active {
+  background: #7f7f7f;
+  color: #fff;
+  border: 1px solid #686767;
 }
 
 .diplomatic-footer-buttons span {
@@ -590,7 +609,48 @@ img {
 .diplomatic-footer-buttons .deactivated {
   cursor: default;
   pointer-events: none;
-  opacity: 0.5;
+  opacity: 0.3;
+}
+
+/**
+* Layout buttons
+**/
+
+.diplomatic-footer .layout-buttons {
+  position: absolute;
+  right: 30px;
+}
+
+.layout-buttons .layout-button {
+  display: inline-block;
+  background-color: lightgray;
+  padding: 6px 7px 0;
+  cursor: pointer;
+  margin-right: 3px;
+  border-radius: 3px;
+  border: 1px solid #b2b2b2;
+}
+
+.layout-buttons span {
+  display: inline-block;
+  position: relative;
+  top: -4px;
+}
+
+.diplomatic-footer .layout-button .layout-icon.white {
+  display: none;
+}
+
+.diplomatic-footer .layout-button.active .layout-icon.white {
+  display: inline-block;
+}
+
+.diplomatic-footer .layout-button.active .layout-icon.black {
+  display: none;
+}
+
+.layout-buttons .layout-icon {
+  width: 18px;
 }
 
 /**
