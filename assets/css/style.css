@@ -15,7 +15,7 @@ html, body {
 }
 
 /**
-* Text
+* Text elements
 **/
 
 h1 {
@@ -73,13 +73,21 @@ img {
 }
 
 .text-column {
-  width: 750px;
+  max-width: 750px;
   display: inline-block;
   margin: 0 20px;
 }
 
+.genetic-page.text-column,
+.text-page.text-column {
+  padding-bottom: 40px;
+}
+
 .card-container {
   padding-bottom: 40px;
+  width: 785px;
+  display: inline-block;
+  text-align: left;
 }
 
 /**
@@ -175,6 +183,22 @@ img {
 }
 
 /**
+* Breadcrumb
+**/
+
+.breadcrumb {
+  display: inline-block;
+  text-transform: uppercase;
+  font-size: 12px;
+  color: #666;
+  margin-left: 20px;
+}
+
+.breadcrumb a {
+  color: #666;
+}
+
+/**
 * Hero
 **/
 
@@ -212,18 +236,266 @@ img {
 }
 
 /**
-* Variants
+* Authors page
 **/
 
-.variants-page.text-column {
-  padding-bottom: 40px;
+.authors-preface {
+  text-align: left;
 }
 
-.variants-page .genetic-preface {
+/**
+* Author/Text page introductions
+**/
+
+.intro-image {
+  width: 100%;
+  padding-bottom: 44%;
+  display: inline-block;
+}
+
+.intro-teaser {
+  text-align: justify;
+  display: inline-block;
+  margin: 20px 0 5px;
+}
+
+/**
+* Author page
+**/
+
+.author-page {
+  width: 800px;
+  display: inline-block;
+}
+
+.author-container {
+  margin-bottom: 10px;
+  width: 750px;
+  display: inline-block;
+}
+
+/**
+* Text page
+**/
+
+.text-page .text-cards {
+  margin: 20px 0;
+}
+
+.text-page a.text-card {
+  width: 31.5%;
+  padding-bottom: 5%;
+  background: lightgray;
+  display: inline-block;
+  margin-right: 0.4%;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.text-page .text-card:nth-of-type(3) {
+  margin-right: 0;
+}
+
+.text-page .text-card-image {
+  width: 40%;
+  margin: 10% 0;
+  transition: filter 0.3s;
+  -webkit-filter: grayscale(100%);
+  filter: grayscale(100%);
+}
+
+.text-page .text-card-label {
+  position: absolute;
+  z-index: 10;
+  bottom: 0;
+  width: 100%;
+  background: rgba(0,0,0,0.75);
+  padding: 10px;
+  box-sizing: border-box;
+  color: #fff;
+  font-weight: 800;
+  font-size: 16px;
+  transition: color 0.3s;
+}
+
+.text-page .text-card:hover img {
+  -webkit-filter: grayscale(0%);
+  filter: grayscale(0%);
+}
+
+.text-page .text-card:hover .text-card-label {
+  color: rgb({{ site.light }});
+}
+
+/**
+* Diplomatic page
+**/
+
+.diplomatic-page .page-content {
+  display: block;
+  position: absolute;
+  top: 60px;
+  right: 0;
+  bottom: 70px;
+  left: 0;
+  height: auto;
+  width: auto;
+  background: rgba(0,0,0,0.9);
+}
+
+.diplomatic-page .page-image-container {
+  width: 50%;
+  display: inline-block;
+  height: 100%;
+  overflow: auto;
+  padding: 50px 20px 50px 50px;
+  box-sizing: border-box;
+  text-align: right;
+}
+
+.diplomatic-page .page-image-container img {
+  width: 100%;
+  max-width: 700px;
+}
+
+.diplomatic-page .page-text-container {
+  width: auto;
+  display: inline-block;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 50%;
+  max-height: 100%;
+  overflow: auto;
+  text-align: left;
+}
+
+.diplomatic-page .page-text {
+  display: inline-block;
+  white-space: pre;
+  padding: 50px 40px 30px;
+  line-height: 1.7em;
+  text-align: left;
+  background-color: #f1f1f1;
+  box-sizing: border-box;
+  margin: 60px;
+  font-family: 'Inconsolata', monospace;
+  border-radius: 2px;
+}
+
+/**
+* Diplomatic page footer
+**/
+
+.diplomatic-footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 70px;
+  background: #f2f0f0;
+  text-align: center;
+  box-shadow: 0px -0.02em 0.3em rgba(0, 0, 0, 0.5);
+}
+
+.diplomatic-footer .page-buttons,
+.diplomatic-footer .layout-buttons {
+  display: inline-block;
+  margin-top: 20px;
+  border-radius: 3px;
+}
+
+.diplomatic-footer .page-buttons div {
+  color: #000;
+  display: inline-block;
+  padding: 3px 0;
+  cursor: pointer;
+  border: 1px solid #b2b2b2;
+  border-radius: 5px;
+  font-size: 17px;
+  background: linear-gradient(#d7d7d7, #d1d1d1);
+  width: 28px;
+}
+
+.diplomatic-footer .page-button.page.active,
+.diplomatic-footer .layout-button.active {
+  background: #7f7f7f;
+  color: #fff;
+  border: 1px solid #686767;
+}
+
+.diplomatic-footer-buttons span {
+  position: relative;
+  top: -1px;
+}
+
+.diplomatic-footer-buttons .deactivated {
+  cursor: default;
+  pointer-events: none;
+  opacity: 0.3;
+}
+
+/**
+* Diplomatic page layout buttons
+**/
+
+.diplomatic-footer .layout-buttons {
+  position: absolute;
+  right: 30px;
+}
+
+.layout-buttons .layout-button {
+  display: inline-block;
+  background-color: lightgray;
+  padding: 6px 7px 0;
+  cursor: pointer;
+  margin-right: 3px;
+  border-radius: 3px;
+  border: 1px solid #b2b2b2;
+}
+
+.layout-buttons span {
+  display: inline-block;
+  position: relative;
+  top: -4px;
+}
+
+.diplomatic-footer .layout-button .layout-icon.white {
+  display: none;
+}
+
+.diplomatic-footer .layout-button.active .layout-icon.white {
+  display: inline-block;
+}
+
+.diplomatic-footer .layout-button.active .layout-icon.black {
+  display: none;
+}
+
+.layout-buttons .layout-icon {
+  width: 18px;
+}
+
+/**
+* Diplomatic markup helpers
+**/
+
+.margin-line {
+  border-left: 2px solid #5e5e5e;
+  margin-left: -5px;
+  padding-left: 3px;
+}
+
+/**
+* Genetic page
+**/
+
+.genetic-page .genetic-preface {
   text-align: justify;
 }
 
-.variants-page .variant-text {
+.genetic-page .variant-text {
   text-align: left;
   margin: 20px 0;
   position: relative;
@@ -339,7 +611,7 @@ img {
 }
 
 /**
-* Stlye citations
+* Variant text citations
 **/
 
 .variant-text .citations {
@@ -354,10 +626,6 @@ img {
   font-size: 14px;
   vertical-align: top;
 }
-
-/**
-* Helpers
-**/
 
 .variant-text .citations .lightbox-link {
   width: 17px;
@@ -402,50 +670,8 @@ img {
 }
 
 /**
-* Authors page
-**/
-
-.authors-preface {
-  text-align: left;
-}
-
-/**
-* Author page
-**/
-
-.author-page {
-  padding-bottom: 40px;
-  width: 800px;
-  display: inline-block;
-}
-
-.author-container {
-  margin-bottom: 10px;
-  width: 750px;
-  display: inline-block;
-}
-
-.author-headshot {
-  width: 100%;
-  height: 330px;
-  display: inline-block;
-}
-
-.author-teaser {
-  text-align: justify;
-  display: inline-block;
-  margin: 20px 0 5px;
-}
-
-/**
 * Cards
 **/
-
-.card-container {
-  width: 785px;
-  display: inline-block;
-  text-align: left;
-}
 
 .card {
   width: 350px;
@@ -482,183 +708,8 @@ img {
 
 .card .button {
   display: inline-block;
-  margin-top: 15px;
+  margin-top: 5px;
   margin-right: 7px;
   padding: 5px 11px;
   font-size: 14px;
-}
-
-/**
-* Breadcrumb
-**/
-
-.breadcrumb {
-  display: inline-block;
-  text-transform: uppercase;
-  font-size: 12px;
-  color: #666;
-  margin-left: 20px;
-}
-
-.breadcrumb a {
-  color: #666;
-}
-
-/**
-* Diplomatic view
-**/
-
-.diplomatic-page .page-content {
-  display: block;
-  position: absolute;
-  top: 60px;
-  right: 0;
-  bottom: 70px;
-  left: 0;
-  height: auto;
-  width: auto;
-  background: rgba(0,0,0,0.9);
-}
-
-.diplomatic-page .page-image-container {
-  width: 50%;
-  display: inline-block;
-  height: 100%;
-  overflow: auto;
-  padding: 50px;
-  box-sizing: border-box;
-  text-align: center;
-}
-
-.diplomatic-page .page-image-container img {
-  width: 100%;
-}
-
-.diplomatic-page .page-text-container {
-  text-align: left;
-  width: auto;
-  display: inline-block;
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 50%;
-  max-height: 100%;
-  overflow: auto;
-  text-align: center;
-}
-
-.diplomatic-page .page-text {
-  display: inline-block;
-  white-space: pre;
-  padding: 50px 40px 30px;
-  line-height: 1.7em;
-  text-align: left;
-  background-color: #f1f1f1;
-  box-sizing: border-box;
-  margin: 60px;
-  font-family: 'Inconsolata', monospace;
-  border-radius: 2px;
-}
-
-/**
-* Diplomatic footer
-**/
-
-.diplomatic-footer {
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-  height: 70px;
-  background: #f2f0f0;
-  text-align: center;
-  box-shadow: 0px -0.02em 0.3em rgba(0, 0, 0, 0.5);
-}
-
-.diplomatic-footer .page-buttons,
-.diplomatic-footer .layout-buttons {
-  display: inline-block;
-  margin-top: 20px;
-  border-radius: 3px;
-}
-
-.diplomatic-footer .page-buttons div {
-  color: #000;
-  display: inline-block;
-  padding: 3px 0;
-  cursor: pointer;
-  border: 1px solid #b2b2b2;
-  border-radius: 5px;
-  font-size: 17px;
-  background: linear-gradient(#d7d7d7, #d1d1d1);
-  width: 28px;
-}
-
-.diplomatic-footer .page-button.page.active,
-.diplomatic-footer .layout-button.active {
-  background: #7f7f7f;
-  color: #fff;
-  border: 1px solid #686767;
-}
-
-.diplomatic-footer-buttons span {
-  position: relative;
-  top: -1px;
-}
-
-.diplomatic-footer-buttons .deactivated {
-  cursor: default;
-  pointer-events: none;
-  opacity: 0.3;
-}
-
-/**
-* Layout buttons
-**/
-
-.diplomatic-footer .layout-buttons {
-  position: absolute;
-  right: 30px;
-}
-
-.layout-buttons .layout-button {
-  display: inline-block;
-  background-color: lightgray;
-  padding: 6px 7px 0;
-  cursor: pointer;
-  margin-right: 3px;
-  border-radius: 3px;
-  border: 1px solid #b2b2b2;
-}
-
-.layout-buttons span {
-  display: inline-block;
-  position: relative;
-  top: -4px;
-}
-
-.diplomatic-footer .layout-button .layout-icon.white {
-  display: none;
-}
-
-.diplomatic-footer .layout-button.active .layout-icon.white {
-  display: inline-block;
-}
-
-.diplomatic-footer .layout-button.active .layout-icon.black {
-  display: none;
-}
-
-.layout-buttons .layout-icon {
-  width: 18px;
-}
-
-/**
-* Diplomatic markup helpers
-**/
-
-.margin-line {
-  border-left: 2px solid #5e5e5e;
-  margin-left: -5px;
-  padding-left: 3px;
 }

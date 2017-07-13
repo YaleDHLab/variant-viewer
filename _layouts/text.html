@@ -1,0 +1,32 @@
+---
+layout: default
+---
+{% include get_current_text.html %}
+{% include get_current_author.html %}
+{% include breadcrumb_text.html %}
+{% include text_links.html %}
+{% include header.html breadcrumb=breadcrumb_html %}
+<div class='container'>
+  <div class='text-column text-page'>
+    <h1>{{ text.title }}</h1>
+    <div class='intro-image background-image'
+      style='background-image:url({{ text.cover_image | prepend: site.baseurl }})'></div>
+    <div class='intro-teaser'>{{ text.teaser }}</div>
+
+    <div class='text-cards'>
+      <a href={{ diplomatic_route }} class='text-card'>
+        <img class='text-card-image' src='/variant-viewer/assets/images/icons/diplomatic-icon.svg'>
+        <div class='text-card-label'>View Diplomatic Edition</div>
+      </a>
+      <a href={{ genetic_route }} class='text-card'>
+        <img class='text-card-image' src='/variant-viewer/assets/images/icons/genetic-icon.svg'>
+        <div class='text-card-label'>View Genetic Edition</div>
+      </a>
+      <a href={{ print_route }} class='text-card'>
+        <img class='text-card-image' src='/variant-viewer/assets/images/icons/print-icon.svg'>
+        <div class='text-card-label'>View Print Edition</div>
+      </a>
+    </div>
+  </div>
+  <div class='push'></div>
+</div>

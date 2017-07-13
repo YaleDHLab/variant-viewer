@@ -1,0 +1,7 @@
+{%- assign author = site.data.authors[page.author_id] -%}
+{%- capture authors_route %}{{ site.baseurl }}/authors/{% endcapture -%}
+{%- capture author_route %}{{ authors_route }}{{ author.last_name | downcase }}{% endcapture -%}
+{%- capture text_route %}{{ author_route }}/{{ text.text_id }}{%- endcapture -%}
+{%- capture diplomatic_route %}{{ text_route }}/diplomatic.html{% endcapture -%}
+{%- capture genetic_route %}{{ text_route }}/genetic.html{% endcapture -%}
+{%- capture print_route %}{{ text_route }}/print.html{% endcapture -%}

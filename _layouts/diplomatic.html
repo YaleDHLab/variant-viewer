@@ -4,7 +4,7 @@
   <body>
     {% include get_current_text.html %}
     {% include get_current_author.html %}
-    {% include text_breadcrumb.html %}
+    {% include breadcrumb_text.html %}
     {% include header.html breadcrumb=breadcrumb_html %}
     <script>
     var pages = {{ text.diplomatic_data.pages | jsonify }};
