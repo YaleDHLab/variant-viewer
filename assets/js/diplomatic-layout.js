@@ -15,6 +15,7 @@
   textImageLayoutButton.addEventListener('click', function(e) {
     pageImageContainer.style.width = '50%';
     pageImageContainer.style.display = 'inline-block';
+    pageImageContainer.style.textAlign = 'right';
     pageImage.style.width = '100%';
     pageTextContainer.style.left = '50%';
     pageTextContainer.style.width = '50%';
@@ -30,6 +31,7 @@
   imageLayoutButton.addEventListener('click', function(e) {
     pageImageContainer.style.width = '100%';
     pageImageContainer.style.display = 'inline-block';
+    pageImageContainer.style.textAlign = 'center';
     pageImage.style.width = '50%';
     pageTextContainer.style.display = 'none';
 
@@ -45,6 +47,7 @@
     pageTextContainer.style.width = '100%';
     pageTextContainer.style.display = 'inline-block';
     pageTextContainer.style.left = '0%';
+    pageTextContainer.style.textAlign = 'center';
 
     updateButtonState(e);
   })

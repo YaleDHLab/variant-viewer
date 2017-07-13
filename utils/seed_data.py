@@ -265,6 +265,15 @@ for i in texts:
   ]
 
   ##
+  # Add text index page
+  ##
+
+  header_lines = copy.copy(content_lines)
+  header_lines.insert(1, 'layout: text')
+  with open(text_dir + '/index.html', 'w') as out:
+    out.write( '\n'.join(header_lines) )
+
+  ##
   # Write individual files
   ##
 

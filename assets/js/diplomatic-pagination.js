@@ -1,7 +1,8 @@
 (function() {
   if (!window.location.hash) window.location.hash = 1;
 
-  var pages = document.querySelectorAll('.page-content'),
+  var pageText = document.querySelector('.page-text'),
+      pageImage = document.querySelector('.page-image'),
       container = document.querySelector('.page-buttons'),
       buttons = container.querySelectorAll('.page-button'),
       pageButtons = container.querySelectorAll('.page'),
@@ -11,7 +12,7 @@
       nextButton = container.querySelector('.next'),
       hash = parseInt(window.location.hash.substring(1));
 
-  updateButtons();
+  updatePagination();
 
   /**
   * Attach event listeners
@@ -28,7 +29,7 @@
 
       hash = parseInt(elem.dataset.page);
       window.location.href = '#' + hash;
-      updateButtons();
+      updatePagination();
     })
   }
 
@@ -36,10 +37,21 @@
   * Callbacks for event listeners
   **/
 
-  function updateButtons() {
+  function updatePagination() {
+    loadPageContent();
     updateButtonLabels();
     updateHighlightedPage();
     updateButtonStates();
+  }
+
+  /**
+  * Leverage data cached in page script tags to
+  * create json calls
+  **/
+
+  function loadPageContent() {
+    pageText.innerHTML = pages[hash-1].text;
+    pageImage.src = baseurl + pages[hash-1].image;
   }
 
   function updateHighlightedPage() {
