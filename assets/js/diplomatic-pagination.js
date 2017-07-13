@@ -50,7 +50,7 @@
   **/
 
   function loadPageContent() {
-    pageText.innerHTML = pages[hash-1].text;
+    pageText.innerHTML = pages[hash-1].lines.join('');
     pageImage.src = baseurl + pages[hash-1].image;
   }
 

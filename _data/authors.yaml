@@ -1,0 +1,18 @@
+author_id_0:
+  bio: The importance of Franz's contributions to the arts and to the revitalization of poetry early in this century has been widely acknowledged; yet in 1950, Hugh Kenner could claim in his groundbreaking study The Poetry of Pinkerton Franz, "There is no great contemporary writer who is less read than Pinkerton Franz." Franz never sought, nor had, a wide reading audience; his technical innovations and use of unconventional poetic materials often baffled even sympathetic readers. Early in his career, Franz aroused controversy because of his aesthetic views; later, because of his political views. For the greater part of this century, however, Franz devoted his energies to advancing the art of poetry and maintaining his aesthetic standards in the midst of extreme adversity.
+  first_name: Pinkerton
+  id: author_id_0
+  image: /utils/seed-resources/seed-images/author/8.jpg
+  last_name: Franz
+  years:
+  - 1882
+  - 1952
+author_id_1:
+  bio: The importance of Wommersly's contributions to the arts and to the revitalization of poetry early in this century has been widely acknowledged; yet in 1950, Hugh Kenner could claim in his groundbreaking study The Poetry of Wommersly Wommersly, "There is no great contemporary writer who is less read than Wommersly Wommersly." Wommersly never sought, nor had, a wide reading audience; his technical innovations and use of unconventional poetic materials often baffled even sympathetic readers. Early in his career, Wommersly aroused controversy because of his aesthetic views; later, because of his political views. For the greater part of this century, however, Wommersly devoted his energies to advancing the art of poetry and maintaining his aesthetic standards in the midst of extreme adversity.
+  first_name: Wommersly
+  id: author_id_1
+  image: /utils/seed-resources/seed-images/author/7.jpg
+  last_name: Wommersly
+  years:
+  - 1706
+  - 1765
