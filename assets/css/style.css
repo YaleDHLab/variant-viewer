@@ -509,7 +509,7 @@ img {
 **/
 
 .diplomatic-page .page-content {
-  display: none;
+  display: block;
   position: absolute;
   top: 60px;
   right: 0;
@@ -518,10 +518,6 @@ img {
   height: auto;
   width: auto;
   background: rgba(0,0,0,0.9);
-}
-
-.diplomatic-page .page-content:target {
-  display: block;
 }
 
 .diplomatic-page .page-image-container {
