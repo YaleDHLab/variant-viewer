@@ -6,20 +6,18 @@
     {% include get_current_author.html %}
     {% include text_breadcrumb.html %}
     {% include header.html breadcrumb=breadcrumb_html %}
-    {%- assign page_id = 1 -%}
+    <script>
+    var pages = {{ text.diplomatic_data.pages | jsonify }};
+    var baseurl = '{{ site.baseurl }}';
+    </script>
     <div class='diplomatic-page'>
-      {% for page in text.diplomatic_data.pages %}
-        <div class='page-content' id={{ page_id }}>
-          <div class='page-image-container'>
-            <img class='page-image'
-            src='{{ page.image | prepend: site.baseurl }}'>
-          </div>
-          <div class='page-text-container'>
-            <div class='page-text'>{{ page.text }}</div>
-          </div>
+      <div class='page-content'>
+        <div class='page-image-container'>
+          <img class='page-image'>
         </div>
-        {%- assign page_id = page_id | plus: 1 -%}
-      {% endfor %}
+        <div class='page-text-container'>
+          <div class='page-text'></div>
+        </div>
       </div>
     </div>
     <div class='diplomatic-footer'>
