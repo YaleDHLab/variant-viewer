@@ -1,4 +1,5 @@
-from collections import defaultdict
+from yaml.representer import SafeRepresenter
+from collections import defaultdict, OrderedDict
 from random import randint
 import codecs, yaml, json, glob, os, shutil, glob, copy
 
@@ -29,6 +30,7 @@ words = text.split()
 # images seed data
 manuscript_images = glob.glob(seed_resources + '/seed-images/manuscript/*')
 author_images = glob.glob(seed_resources + '/seed-images/author/*')
+print_images = glob.glob(seed_resources + '/seed-images/print/*quarter.jpg')
 
 bio = codecs.open(seed_resources + '/seed-txt/seed_bio.txt').read()
 teasers = codecs.open(seed_resources + '/seed-txt/seed_teasers.txt').read().split('\n\n')
@@ -135,7 +137,7 @@ for author_id_int in rand_range(2, 4):
     work['diplomatic_data']['pages'] = []
 
     for page_id in rand_range(20, 30):
-      page_text = ''
+      page_lines = []
       page_image = '/utils/' + select_one(manuscript_images)
       in_margin_div = False
       drew_margin_line = False
@@ -173,34 +175,65 @@ for author_id_int in rand_range(2, 4):
           line_text += word_whitespace + word
 
         # build up the final text line
-        composed_line_text = leading_whitespace + line_text + '<br/>'
+        composed_line_text = leading_whitespace + line_text
 
         # add marginal lines periodically
         random_variable = rand_range(1,8)
         if random_variable[-1] == 6 and in_margin_div == False and drew_margin_line == False:
-          page_text += '<div class="margin-line">' + composed_line_text
+          page_lines.append('<div class="margin-line">' + composed_line_text + '<br/>')
           drew_margin_line = True
           in_margin_div = True
 
         elif in_margin_div:
-          page_text += composed_line_text + '</div>'
+          page_lines.append(composed_line_text + '</div>')
           in_margin_div = False
 
         else:
-          page_text += composed_line_text
+          page_lines.append(composed_line_text + '<br/>')
 
       work['diplomatic_data']['pages'].append({
         'image': page_image,
-        'text': page_text
+        'lines': page_lines
       })
 
+      ##
+      # Print data
+      ##
+
+      print_image_list = []
+      for i in rand_range(5, len(print_images)):
+        print_image_list.append('/utils/' + print_images[i])
+
+      work['print_data'] = {
+        'pages': print_image_list
+      }
+
+    # add this work to the list of works
     outgoing_texts.append(work)
 
+##
+# JSON output
+##
+
+'''
 with open('../_data/texts.json', 'w') as out:
   json.dump(outgoing_texts, out)
 
 with open('../_data/authors.json', 'w') as out:
   json.dump(outgoing_authors, out)
+'''
+
+##
+# YAML output
+##
+
+with open('../_data/texts.yaml', 'w') as out:
+  yaml.dump(outgoing_texts, out, default_flow_style=False,
+    width=float('inf'), default_style='')
+
+with open('../_data/authors.yaml', 'w') as out:
+  yaml.dump(outgoing_authors, out, default_flow_style=False,
+    width=float('inf'))
 
 ##
 # Seed app views
@@ -215,8 +248,8 @@ for i in glob.glob(root_output_directory + '/*'):
   if 'index.html' not in i:
     shutil.rmtree(i)
 
-authors = json.load(open('../_data/authors.json'))
-texts = json.load(open('../_data/texts.json'))
+authors = yaml.load(open('../_data/authors.yaml'))
+texts = yaml.load(open('../_data/texts.yaml'))
 
 # build the authors page
 with open(root_output_directory + '/index.html', 'w') as out:

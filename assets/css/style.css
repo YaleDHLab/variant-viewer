@@ -26,6 +26,16 @@ a {
   display: inline-block;
 }
 
+sup, sub {
+  vertical-align: baseline;
+  position: relative;
+  top: -0.4em;
+}
+
+sub {
+  top: 0.4em;
+}
+
 /**
 * Images
 **/
@@ -66,6 +76,14 @@ img {
   max-width: 100%;
   overflow: auto;
   margin: 0 auto -90px;
+}
+
+.container.print-page {
+  margin: initial;
+  margin-bottom: -90px;
+  background-color: rgba(0,0,0,0.9);
+  text-align: center;
+  width: 100%;
 }
 
 .text-column {
@@ -281,7 +299,7 @@ img {
 .text-page a.text-card {
   width: 31.5%;
   padding-bottom: 5%;
-  background: lightgray;
+  background: #e4e3e3;
   display: inline-block;
   margin-right: 0.4%;
   position: relative;
@@ -296,9 +314,10 @@ img {
 .text-page .text-card-image {
   width: 40%;
   margin: 10% 0;
-  transition: filter 0.3s;
   -webkit-filter: grayscale(100%);
   filter: grayscale(100%);
+  opacity: 0.7;
+  transition: filter 0.3s, opacity 0.3s;
 }
 
 .text-page .text-card-label {
@@ -306,22 +325,24 @@ img {
   z-index: 10;
   bottom: 0;
   width: 100%;
-  background: rgba(0,0,0,0.75);
+  background: rgba(0,0,0,0.25);
   padding: 10px;
   box-sizing: border-box;
   color: #fff;
   font-weight: 800;
   font-size: 16px;
-  transition: color 0.3s;
+  transition: color 0.3s, background 0.3s;
 }
 
 .text-page .text-card:hover img {
   -webkit-filter: grayscale(0%);
   filter: grayscale(0%);
+  opacity: 1;
 }
 
 .text-page .text-card:hover .text-card-label {
   color: rgb(253, 216, 53);
+  background: rgba(0,0,0,0.55);
 }
 
 /**
@@ -631,6 +652,54 @@ img {
 
 .clear-both {
   clear: both;
+}
+
+/**
+* Print page
+**/
+
+.print-page-title {
+  font-size: 26px;
+  color: #fff;
+  margin: 50px 0 20px;
+}
+
+.print-page .print-image-container {
+  width: 800px;
+  display: inline-block;
+  position: relative;
+}
+
+.print-page .print-image {
+  max-width: 90%;
+  max-height: 900px;
+  padding: 50px 0;
+  box-sizing: border-box;
+}
+
+.print-page .previous-page,
+.print-page .next-page {
+  position: absolute;
+  top: 42%;
+  width: 100px;
+  background: rgba(0,0,0,0.5);
+  cursor: pointer;
+}
+
+.print-page .previous-page {
+  transform: rotate(270deg);
+  left: 20px;
+}
+
+.print-page .next-page {
+  transform: rotate(90deg);
+  right: 20px;
+}
+
+.print-page .previous-page.disabled,
+.print-page .next-page.disabled {
+  pointer-events: none;
+  opacity: 0.3;
 }
 
 /**
