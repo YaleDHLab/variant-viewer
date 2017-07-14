@@ -30,6 +30,7 @@ words = text.split()
 # images seed data
 manuscript_images = glob.glob(seed_resources + '/seed-images/manuscript/*')
 author_images = glob.glob(seed_resources + '/seed-images/author/*')
+print_images = glob.glob(seed_resources + '/seed-images/print/*quarter.jpg')
 
 bio = codecs.open(seed_resources + '/seed-txt/seed_bio.txt').read()
 teasers = codecs.open(seed_resources + '/seed-txt/seed_teasers.txt').read().split('\n\n')
@@ -195,17 +196,32 @@ for author_id_int in rand_range(2, 4):
         'lines': page_lines
       })
 
+      ##
+      # Print data
+      ##
+
+      print_image_list = []
+      for i in rand_range(5, len(print_images)):
+        print_image_list.append('/utils/' + print_images[i])
+
+      work['print_data'] = {
+        'pages': print_image_list
+      }
+
+    # add this work to the list of works
     outgoing_texts.append(work)
 
 ##
 # JSON output
 ##
 
+'''
 with open('../_data/texts.json', 'w') as out:
   json.dump(outgoing_texts, out)
 
 with open('../_data/authors.json', 'w') as out:
   json.dump(outgoing_authors, out)
+'''
 
 ##
 # YAML output
@@ -213,7 +229,7 @@ with open('../_data/authors.json', 'w') as out:
 
 with open('../_data/texts.yaml', 'w') as out:
   yaml.dump(outgoing_texts, out, default_flow_style=False,
-    width=float('inf'), default_style='"')
+    width=float('inf'), default_style='')
 
 with open('../_data/authors.yaml', 'w') as out:
   yaml.dump(outgoing_authors, out, default_flow_style=False,
