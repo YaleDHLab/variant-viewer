@@ -1,0 +1,21 @@
+---
+layout: default
+---
+{% include get_current_text.html %}
+{% include get_current_author.html %}
+{% include breadcrumb_text.html %}
+{% include header.html breadcrumb=breadcrumb_html %}
+<script>
+var baseurl = '{{ site.baseurl }}';
+var pages = {{ text.print_data.pages | jsonify }};
+</script>
+
+<div class='container print-page'>
+  <div class='print-image-container'>
+    <img class='print-image'>
+    <img src='{{ site.baseurl }}/assets/images/icons/caret.png' class='previous-page'>
+    <img src='{{ site.baseurl }}/assets/images/icons/caret.png' class='next-page'>
+  </div>
+  <div class='push'></div>
+</div>
+<script src='{{ site.baseurl }}/assets/js/print-pagination.js'></script>
