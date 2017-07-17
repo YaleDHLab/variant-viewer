@@ -134,79 +134,87 @@ for author_id_int in rand_range(2, 4):
     # Diplomatic data
     ##
 
-    work['diplomatic_data']['pages'] = []
+    work['diplomatic_data']['editions'] = []
 
-    for page_id in rand_range(20, 30):
-      page_lines = []
-      page_image = '/utils/' + select_one(manuscript_images)
-      in_margin_div = False
-      drew_margin_line = False
-
-      for line_id in rand_range(10, 25):
-        whitespace_vals = rand_range(3, 10)
-        # to randomize the line's leading whitespace
-        # leading_whitespace = ' '.join(['' for i in whitespace_vals])
-        leading_whitespace = ''
-        line_words = select_one(lines).split()
-
-        # add text effects
-        word_effects = [
-          'sup',
-          'sub',
-          'i',
-          'b',
-          's',
-          'u'
-        ]
-
-        for effect in word_effects:
-          random_variable = rand_range(1,8)
-          if random_variable[-1] == 4:
-            word_idx = select_one(range(0, len(line_words)))
-            word = line_words[word_idx]
-            line_words[word_idx] = '<' + effect + '>' + word + '</' + effect + '>'
-
-        # add some staggered whitespace between words
-        line_text = ''
-        for word in line_words:
-          # to randomize whitespace between words:
-          # word_whitespace = ' '.join(['' for i in rand_range(2, 6)])
-          word_whitespace = ' '
-          line_text += word_whitespace + word
-
-        # build up the final text line
-        composed_line_text = leading_whitespace + line_text
-
-        # add marginal lines periodically
-        random_variable = rand_range(1,8)
-        if random_variable[-1] == 6 and in_margin_div == False and drew_margin_line == False:
-          page_lines.append('<div class="margin-line">' + composed_line_text + '<br/>')
-          drew_margin_line = True
-          in_margin_div = True
-
-        elif in_margin_div:
-          page_lines.append(composed_line_text + '</div>')
-          in_margin_div = False
-
-        else:
-          page_lines.append(composed_line_text + '<br/>')
-
-      work['diplomatic_data']['pages'].append({
-        'image': page_image,
-        'lines': page_lines
-      })
-
-      ##
-      # Print data
-      ##
-
-      print_image_list = []
-      for i in rand_range(5, len(print_images)):
-        print_image_list.append('/utils/' + print_images[i])
-
-      work['print_data'] = {
-        'pages': print_image_list
+    for edition_id in rand_range(2, 3):
+      edition = {
+        'edition_id': 'Witness F314' + str(edition_id),
+        'pages': []
       }
+
+      for page_id in rand_range(20, 30):
+        page_lines = []
+        page_image = '/utils/' + select_one(manuscript_images)
+        in_margin_div = False
+        drew_margin_line = False
+
+        for line_id in rand_range(10, 25):
+          whitespace_vals = rand_range(3, 10)
+          # to randomize the line's leading whitespace
+          # leading_whitespace = ' '.join(['' for i in whitespace_vals])
+          leading_whitespace = ''
+          line_words = select_one(lines).split()
+
+          # add text effects
+          word_effects = [
+            'sup',
+            'sub',
+            'i',
+            'b',
+            's',
+            'u'
+          ]
+
+          for effect in word_effects:
+            random_variable = rand_range(1,8)
+            if random_variable[-1] == 4:
+              word_idx = select_one(range(0, len(line_words)))
+              word = line_words[word_idx]
+              line_words[word_idx] = '<' + effect + '>' + word + '</' + effect + '>'
+
+          # add some staggered whitespace between words
+          line_text = ''
+          for word in line_words:
+            # to randomize whitespace between words:
+            # word_whitespace = ' '.join(['' for i in rand_range(2, 6)])
+            word_whitespace = ' '
+            line_text += word_whitespace + word
+
+          # build up the final text line
+          composed_line_text = leading_whitespace + line_text
+
+          # add marginal lines periodically
+          random_variable = rand_range(1,8)
+          if random_variable[-1] == 6 and in_margin_div == False and drew_margin_line == False:
+            page_lines.append('<div class="margin-line">' + composed_line_text + '<br/>')
+            drew_margin_line = True
+            in_margin_div = True
+
+          elif in_margin_div:
+            page_lines.append(composed_line_text + '</div>')
+            in_margin_div = False
+
+          else:
+            page_lines.append(composed_line_text + '<br/>')
+
+        edition['pages'].append({
+          'image': page_image,
+          'lines': page_lines
+        })
+
+      work['diplomatic_data']['editions'].append(edition)
+
+    ##
+    # Print data
+    ##
+
+    print_image_list = []
+    for i in rand_range(5, len(print_images)):
+      print_image_list.append('/utils/' + print_images[i])
+
+    work['print_data'] = {
+      'pages': print_image_list
+    }
 
     # add this work to the list of works
     outgoing_texts.append(work)
