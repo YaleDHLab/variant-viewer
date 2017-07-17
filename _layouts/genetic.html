@@ -39,7 +39,7 @@ layout: default
               <div class='citations'>
                 {%- for reference in variant.references -%}
                   {%- for footnote in reference.footnotes -%}
-                    <a href='{{ site.baseurl }}/citations/{{ footnote }}'>{{ footnote }}</a>
+                    <a class='footnote' href='{{ site.baseurl }}/citations/{{ footnote }}'>{{ footnote }}</a>
                   {%- endfor -%}
                   {%- for image in reference.images -%}
                     <a href='#{{ image }}'>
