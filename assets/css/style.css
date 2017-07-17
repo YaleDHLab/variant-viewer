@@ -11,7 +11,7 @@ html, body {
 }
 
 /**
-* Text elements
+* Elements
 **/
 
 h1 {
@@ -34,6 +34,10 @@ sup, sub {
 
 sub {
   top: 0.4em;
+}
+
+select {
+  font-size: 1em;
 }
 
 /**
@@ -416,6 +420,19 @@ img {
   box-shadow: 0px -0.02em 0.3em rgba(0, 0, 0, 0.5);
 }
 
+.diplomatic-footer .witness-select {
+  background-color: #fff;
+  border-radius: 4px;
+  position: absolute;
+  left: 30px;
+  top: 20px;
+  padding-right: 30px;
+}
+
+/**
+* Diplomatic footer pagination buttons
+**/
+
 .diplomatic-footer .page-buttons,
 .diplomatic-footer .layout-buttons {
   display: inline-block;
@@ -442,12 +459,12 @@ img {
   border: 1px solid #686767;
 }
 
-.diplomatic-footer-buttons span {
+.diplomatic-footer .page-button span {
   position: relative;
   top: -1px;
 }
 
-.diplomatic-footer-buttons .deactivated {
+.diplomatic-footer .page-buttons .deactivated {
   cursor: default;
   pointer-events: none;
   opacity: 0.3;
@@ -462,7 +479,7 @@ img {
   right: 30px;
 }
 
-.layout-buttons .layout-button {
+.diplomatic-footer .layout-buttons .layout-button {
   display: inline-block;
   background-color: lightgray;
   padding: 6px 7px 0;
@@ -472,7 +489,7 @@ img {
   border: 1px solid #b2b2b2;
 }
 
-.layout-buttons span {
+.diplomatic-footer .layout-buttons span {
   display: inline-block;
   position: relative;
   top: -4px;
@@ -480,6 +497,10 @@ img {
 
 .diplomatic-footer .layout-button .layout-icon.white {
   display: none;
+}
+
+.diplomatic-footer .layout-button.active {
+  background: #7f7f7f;
 }
 
 .diplomatic-footer .layout-button.active .layout-icon.white {
@@ -490,7 +511,7 @@ img {
   display: none;
 }
 
-.layout-buttons .layout-icon {
+.diplomatic-footer .layout-buttons .layout-icon {
   width: 18px;
 }
 
@@ -502,6 +523,10 @@ img {
   border-left: 2px solid #5e5e5e;
   margin-left: -5px;
   padding-left: 3px;
+}
+
+.pencil {
+  color: #7b7771;
 }
 
 /**
@@ -598,7 +623,6 @@ img {
   max-height: 100px;
   position: relative;
   width: 750px;
-  z-index: 1;
   background: #fff;
   box-sizing: border-box;
   border-right: 16px solid rgba(253, 216, 53, 0.4);
@@ -633,7 +657,7 @@ img {
 
 .variant-text .citations {
   position: absolute;
-  right: 5px;
+  right: 0px;
   top: .25em;
 }
 
@@ -647,7 +671,12 @@ img {
 .variant-text .citations .lightbox-link {
   width: 17px;
   opacity: 0.6;
-  margin: 1px 0 0 5px;
+  margin-top: 1px;
+}
+
+.variant-text .citations .lightbox-link,
+.variant-text .citations .footnote {
+  margin-right: 5px;
 }
 
 .clear-both {
@@ -777,4 +806,29 @@ img {
   margin-right: 7px;
   padding: 5px 11px;
   font-size: 14px;
+}
+
+/**
+* Custom selects
+**/
+
+.custom-select {
+  padding: 6px;
+  border-radius: 0;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  background: transparent;
+  -webkit-user-select: none;
+  -moz-user-select: -moz-none;
+  -ms-user-select: none;
+  user-select: none;
+  cursor: pointer;
+  background-image: url(/variant-viewer/assets/images/icons/caret-black-downward.png);
+  background-repeat: no-repeat;
+  background-position: 95%;
+  background-size: 15px;
 }
