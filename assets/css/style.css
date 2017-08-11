@@ -711,7 +711,6 @@ img {
   position: absolute;
   top: 42%;
   width: 100px;
-  background: rgba(0,0,0,0.5);
   cursor: pointer;
 }
 
