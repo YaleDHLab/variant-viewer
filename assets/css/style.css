@@ -835,3 +835,15 @@ img {
   background-position: 95%;
   background-size: 15px;
 }
+
+/**
+* Simple pages
+**/
+
+.body-text {
+  text-align: left;
+}
+
+.body-text p {
+  margin-bottom: 15px;
+}

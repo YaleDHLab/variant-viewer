@@ -1,12 +1,12 @@
 ---
 layout: page
-title: About
-permalink: /about/
+title: Downloads
+permalink: /downloads/
 ---
 
 <div class='container'>
   <div class='text-column'>
-    <h1>About</h1>
+    <h1>Downloads</h1>
     <div class='body-text'>
     <p>Receiving the top-maul from Starbuck, he advanced towards the main-mast with the hammer uplifted in one hand, exhibiting the gold with the other, and with a high raised voice exclaiming: "Whosoever of ye raises me a white-headed whale with a wrinkled brow and a crooked jaw; whosoever of ye raises me that white-headed whale, with three holes punctured in his starboard fluke—look ye, whosoever of ye raises me that same white whale, he shall have this gold ounce, my boys!"</p>
 
