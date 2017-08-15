@@ -400,7 +400,7 @@ img {
 .diplomatic-page .page-text {
   display: inline-block;
   white-space: pre;
-  padding: 50px 40px 30px;
+  padding: 50px 40px;
   line-height: 1.7em;
   text-align: left;
   background-color: #f1f1f1;
@@ -472,6 +472,10 @@ img {
   cursor: default;
   pointer-events: none;
   opacity: 0.3;
+}
+
+.diplomatic-footer .page-buttons .hidden {
+  display: none;
 }
 
 /**

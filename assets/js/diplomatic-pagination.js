@@ -105,6 +105,7 @@
     updateButtonLabels();
     updateHighlightedButton();
     updateButtonStates();
+    showHidePageButtons();
   }
 
   /**
@@ -116,6 +117,21 @@
     var page = editions[params.edition-1].pages[params.page-1];
     pageText.innerHTML = page.lines.join('');
     pageImage.src = baseurl + page.image;
+  }
+
+  function showHidePageButtons() {
+    for (var i=0; i<pageButtons.length; i++) {
+      var pageButton = pageButtons[i],
+          pageNumber = parseInt(pageButton.dataset.page),
+          pageClass = pageButton.getAttribute('class');
+
+      console.log(pageNumber, editions[params.edition-1].pages.length)
+      if (pageNumber > editions[params.edition-1].pages.length) {
+        pageButton.setAttribute('class', pageClass + ' hidden')
+      } else {
+        pageButton.setAttribute('class', pageClass.replace('hidden', ''))
+      }
+    }
   }
 
   function updateHighlightedButton() {
@@ -134,12 +150,19 @@
   function updateButtonLabels() {
     var pages = getEditionPages();
 
+    // current page is in the middle of the buttons
     if ((params.page > 2) && (params.page < pages.length-2)) {
       var startVal = params.page-2;
+
+    // current page is 1 or 2; make the first button page 1
     } else if (params.page <= 2) {
       var startVal = 1;
+
+    // ensure we never start counting from a page < 1
     } else {
-      var startVal = pages.length - 4;
+      var startVal = pages.length - 4 > 0 ?
+          pages.length-4
+        : 1;
     }
 
     for (var i=0; i<pageButtons.length; i++) {
