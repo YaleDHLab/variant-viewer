@@ -1,6 +1,4 @@
-{%- assign author = site.data.authors[page.author_id] -%}
-{%- capture authors_route %}{{ site.baseurl }}/authors/{% endcapture -%}
-{%- capture author_route %}{{ authors_route }}{{ author.last_name | downcase }}{% endcapture -%}
+{%- include breadcrumb_author.html -%}
 {%- capture text_route %}{{ author_route }}/{{ text.text_id }}{%- endcapture -%}
 {%- capture authors_tag %}<a href={{ authors_route }}>Authors &rsaquo;</a>{% endcapture -%}
 {%- capture author_tag %}<a href={{ author_route }}>{{ author.last_name }} &rsaquo;</a>{% endcapture -%}
