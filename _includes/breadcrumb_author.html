@@ -3,4 +3,8 @@
 {%- capture author_route %}{{ site.baseurl }}/authors/{{ author.id }}{% endcapture -%}
 {%- capture authors_tag %}<a href={{ authors_route }}>Authors &rsaquo;</a>{% endcapture -%}
 {%- capture author_tag %}<a href={{ author_route }}>{{ author.name }}</a>{% endcapture -%}
-{%- capture breadcrumb_html %}{{ authors_tag }} {{ author_tag}}{% endcapture -%}
+{%- if site.data.authors.size == 1 -%}
+  {%- capture breadcrumb_html %}{% endcapture -%}}
+{%- else -%}
+  {%- capture breadcrumb_html %}{{ authors_tag }} {{ author_tag}}{% endcapture -%}}
+{%- endif -%}
