@@ -1,6 +1,6 @@
 from yaml.representer import SafeRepresenter
 from transform_helpers.parse_tei import *
-import glob
+import glob, os, sys
 
 manifest = get_yaml('utils/data/data-manifest.yaml')
 authors = manifest['authors']
@@ -39,27 +39,15 @@ for i in authors:
         'pages': []
       }
 
-      for witness_page in get_xml_pages( get_soup(k['witness_xml']) ):
-        page = {
-          'lines': [],
-          'image': None
-        }
-        for tag in witness_page['tags']:
-          if tag.name == 'lg':
-            page['lines'].append('<br/>')
-            page['lines'].append('<br/>')
-          elif tag.name == 'l':
-            line = format_line(tag)
-            if line.strip():
-              page['lines'].append(line.rstrip() + '<br/>')
-        witness['pages'].append(page)
+      witness_soup = get_soup(k['witness_xml'])
+      for witness_page in get_xml_pages(witness_soup):
+        image_file = witness_page['image_id'] + k['witness_image_extension']
+        witness['pages'].append({
+          'lines': get_witness_lines(witness_page['tags']),
+          'image': os.path.join(k['witness_image_directory'], image_file)
+        })
       text_data['diplomatic_data']['editions'].append(witness)
     text_yaml.append(text_data)
 
-with open('author_yaml.yaml', 'w') as out:
-  yaml.dump(author_yaml, out, default_flow_style=False,
-    width=float('inf'), default_style='')
-
-with open('text_yaml.yaml', 'w') as out:
-  yaml.dump(text_yaml, out, default_flow_style=False,
-    width=float('inf'), default_style='')
+write_yaml('_data/authors.yaml', author_yaml)
+write_yaml('_data/texts.yaml', text_yaml)
