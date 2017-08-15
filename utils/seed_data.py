@@ -1,7 +1,7 @@
 from yaml.representer import SafeRepresenter
 from collections import defaultdict, OrderedDict
 from random import randint
-import codecs, yaml, json, glob, os, shutil, glob, copy
+import codecs, yaml, json, glob
 
 ##
 # Seed app data
@@ -20,7 +20,7 @@ d = defaultdict(
 
 outgoing_authors = {}
 outgoing_texts = []
-seed_resources = 'seed-resources'
+seed_resources = 'utils/seed-resources'
 
 # get poem seed data
 text = codecs.open(seed_resources + '/seed-txt/seed_lines.txt').read()
@@ -37,8 +37,6 @@ teasers = codecs.open(seed_resources + '/seed-txt/seed_teasers.txt').read().spli
 names = ['Thomas', 'Widdle', 'Pinkerton', 'Orion', 'Wommersly', 'Smith', 'Franz', 'Lambda', 'Mancin']
 title_words = ['Tree', 'Branches', 'Moss', 'River', 'Stone', 'Ship', 'Sails']
 footnotes = ['II.342', 'IV.4', 'III.78', 'VI.12', 'VII.62']
-
-root_output_directory = '../_authors'
 
 def select_one(l):
   '''Return a random selection from a list'''
@@ -61,6 +59,7 @@ for author_id_int in rand_range(2, 4):
     'id': author_id,
     'first_name': first_name,
     'last_name': last_name,
+    'name': first_name + ' ' + last_name,
     'years': [start_year, end_year],
     'bio': author_bio,
     'image': '/utils/' + select_one(author_images)
@@ -224,10 +223,10 @@ for author_id_int in rand_range(2, 4):
 ##
 
 '''
-with open('../_data/texts.json', 'w') as out:
+with open('_data/texts.json', 'w') as out:
   json.dump(outgoing_texts, out)
 
-with open('../_data/authors.json', 'w') as out:
+with open('_data/authors.json', 'w') as out:
   json.dump(outgoing_authors, out)
 '''
 
@@ -235,91 +234,10 @@ with open('../_data/authors.json', 'w') as out:
 # YAML output
 ##
 
-with open('../_data/texts.yaml', 'w') as out:
+with open('_data/texts.yaml', 'w') as out:
   yaml.dump(outgoing_texts, out, default_flow_style=False,
     width=float('inf'), default_style='')
 
-with open('../_data/authors.yaml', 'w') as out:
+with open('_data/authors.yaml', 'w') as out:
   yaml.dump(outgoing_authors, out, default_flow_style=False,
     width=float('inf'))
-
-##
-# Seed app views
-##
-
-# build the root output directory if it doesn't exist
-if not os.path.exists(root_output_directory):
-  os.makedirs(root_output_directory)
-
-# delete extant views // beware!
-for i in glob.glob(root_output_directory + '/*'):
-  if 'index.html' not in i:
-    shutil.rmtree(i)
-
-authors = yaml.load(open('../_data/authors.yaml'))
-texts = yaml.load(open('../_data/texts.yaml'))
-
-# build the authors page
-with open(root_output_directory + '/index.html', 'w') as out:
-  out.write('---\nlayout: authors\n---\n')
-
-# build the individual author text views
-for i in texts:
-  author_id = i['author_id']
-  author = authors[author_id]
-
-  ##
-  # Author index
-  ##
-
-  author_dir = root_output_directory + '/' + author['last_name'].lower()
-  if not os.path.exists(author_dir):
-    os.makedirs(author_dir)
-
-  index_content =  '---\n'
-  index_content += 'layout: author\n'
-  index_content += 'author_id: ' + author_id + '\n'
-  index_content += '---\n'
-
-  with open(author_dir + '/index.html', 'w') as out:
-    out.write(index_content)
-
-  ##
-  # Text files
-  ##
-
-  text_id = i['text_id']
-  text_dir = author_dir + '/' + text_id
-
-  if not os.path.exists(text_dir):
-    os.makedirs(text_dir)
-
-  ##
-  # Reused content lines
-  ##
-
-  content_lines = [
-    '---',
-    'author_id: ' + author_id,
-    'text_id: ' + text_id,
-    '---'
-  ]
-
-  ##
-  # Add text index page
-  ##
-
-  header_lines = copy.copy(content_lines)
-  header_lines.insert(1, 'layout: text')
-  with open(text_dir + '/index.html', 'w') as out:
-    out.write( '\n'.join(header_lines) )
-
-  ##
-  # Write individual files
-  ##
-
-  for layout in ['genetic', 'diplomatic', 'print']:
-    header_lines = copy.copy(content_lines)
-    header_lines.insert(1, 'layout: ' + layout)
-    with open(text_dir + '/' + layout + '.html', 'w') as out:
-      out.write( '\n'.join(header_lines) )
