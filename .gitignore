@@ -6,3 +6,4 @@ ngrok
 *.DS_Store
 node_modules
 utils/data-collection/beinecke-images
+utils/transform_helpers/__pycache__

@@ -9,12 +9,12 @@ layout: default
     <div class='authors-preface'>Each of the authors below had a dynamic writing process that involved heavy changes to manuscript drafts. Click on an author to explore their writing process.</div>
   </div>
   <div class='card-container'>
-    {% for a in site.data.authors %}
-      {% assign author = a[1] %}
-      {% capture image %}{{ site.baseurl }}{{ author.image }}{% endcapture %}
-      {% assign teaser = author.bio %}
-      {% capture title %}{{ author.first_name }} {{ author.last_name }}{% endcapture %}
-      {% capture url %}/authors/{{ author.last_name | downcase }}{% endcapture %}
+    {%- for a in site.data.authors -%}
+      {%- assign author = a[1] -%}
+      {%- capture image %}{{ site.baseurl }}{{ author.image }}{% endcapture -%}
+      {%- assign teaser = author.bio -%}
+      {%- capture title %}{{ author.name }}{% endcapture -%}
+      {%- capture url %}/authors/{{ author.id }}{% endcapture -%}
       {% include card.html
         image=image
         title=title
@@ -23,7 +23,7 @@ layout: default
         teaser=teaser
         grayscale=true
       %}
-    {% endfor %}
+    {%- endfor -%}
   </div>
   <div class='push'></div>
 </div>
