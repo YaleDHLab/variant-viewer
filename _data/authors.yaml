@@ -1,18 +1,5 @@
-author_id_0:
-  bio: The importance of Wommersly's contributions to the arts and to the revitalization of poetry early in this century has been widely acknowledged; yet in 1950, Hugh Kenner could claim in his groundbreaking study The Poetry of Mancin Wommersly, "There is no great contemporary writer who is less read than Mancin Wommersly." Wommersly never sought, nor had, a wide reading audience; his technical innovations and use of unconventional poetic materials often baffled even sympathetic readers. Early in his career, Wommersly aroused controversy because of his aesthetic views; later, because of his political views. For the greater part of this century, however, Wommersly devoted his energies to advancing the art of poetry and maintaining his aesthetic standards in the midst of extreme adversity.
-  first_name: Mancin
-  id: author_id_0
-  image: /utils/seed-resources/seed-images/author/3.jpg
-  last_name: Wommersly
-  years:
-  - 1714
-  - 1766
-author_id_1:
-  bio: The importance of Franz's contributions to the arts and to the revitalization of poetry early in this century has been widely acknowledged; yet in 1950, Hugh Kenner could claim in his groundbreaking study The Poetry of Thomas Franz, "There is no great contemporary writer who is less read than Thomas Franz." Franz never sought, nor had, a wide reading audience; his technical innovations and use of unconventional poetic materials often baffled even sympathetic readers. Early in his career, Franz aroused controversy because of his aesthetic views; later, because of his political views. For the greater part of this century, however, Franz devoted his energies to advancing the art of poetry and maintaining his aesthetic standards in the midst of extreme adversity.
-  first_name: Thomas
-  id: author_id_1
-  image: /utils/seed-resources/seed-images/author/5.jpg
-  last_name: Franz
-  years:
-  - 1671
-  - 1733
+pound:
+  bio: The importance of Pound's contributions to the arts and to the revitalization of poetry early in this century has been widely acknowledged; yet in 1950, Hugh Kenner could claim in his groundbreaking study The Poetry of Ezra Pound, "There is no great contemporary writer who is less read than Ezra Pound." Pound never sought, nor had, a wide reading audience; his technical innovations and use of unconventional poetic materials often baffled even sympathetic readers. Early in his career, Pound aroused controversy because of his aesthetic views; later, because of his political views. For the greater part of this century, however, Pound devoted his energies to advancing the art of poetry and maintaining his aesthetic standards in the midst of extreme adversity.
+  id: pound
+  image: /utils/data/authors/pound/ezra-pound.jpg
+  name: Ezra Pound
