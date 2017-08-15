@@ -2,10 +2,10 @@
 <html>
   {% include head.html %}
   <body>
-    {% include get_current_text.html %}
-    {% include get_current_author.html %}
-    {% include breadcrumb_text.html %}
-    {% include header.html breadcrumb=breadcrumb_html %}
+    {%- include get_current_text.html -%}
+    {%- include get_current_author.html -%}
+    {%- include breadcrumb_text.html %}
+    {% include header.html breadcrumb=breadcrumb_html -%}
     <script>
     var editions = {{ text.diplomatic_data.editions | jsonify }};
     var baseurl = '{{ site.baseurl }}';
@@ -23,11 +23,11 @@
     <div class='diplomatic-footer'>
       <div class='custom-select-container'>
         <select class='custom-select witness-select'>
-          {% assign edition_idx = 1 %}
-          {% for edition in text.diplomatic_data.editions %}
+          {%- assign edition_idx = 1 %}
+          {%- for edition in text.diplomatic_data.editions %}
             <option value='{{ edition_idx }}'>{{ edition.edition_id }}</option>
-            {% assign edition_idx = edition_idx | plus: 1 %}
-          {% endfor %}
+            {%- assign edition_idx = edition_idx | plus: 1 %}
+          {%- endfor %}
         </select>
       </div>
       <div class='page-buttons'>

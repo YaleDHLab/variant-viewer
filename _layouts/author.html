@@ -7,7 +7,7 @@ layout: default
   <div class='author-page'>
     <div class='text-column'>
     {% include duotone.html %}
-      <h1>{{ author.first_name }} {{ author.last_name }}</h1>
+      <h1>{{ author.name }}</h1>
       <div class='intro-image duotone background-image'
         style='background-image:url({{ author.image | prepend: site.baseurl }})'></div>
       <div class='intro-teaser'>{{ author.bio }}</div>
@@ -18,9 +18,7 @@ layout: default
           {% assign image = text.cover_image | prepend: site.baseurl %}
           {% assign title = text.title %}
           {% assign teaser = text.teaser %}
-          {% assign lastname = author.last_name | downcase %}
-          {% assign text_id = text.text_id %}
-          {% capture text_url %}/authors/{{ lastname }}/{{ text_id }}{% endcapture %}
+          {% capture text_url %}/authors/{{ author.id  }}/{{ text.text_id }}{% endcapture %}
           {% capture text_index_url %}{{ text_url }}/index.html{% endcapture %}
           {% include card.html
             image=image
