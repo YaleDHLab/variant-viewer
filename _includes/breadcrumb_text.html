@@ -3,4 +3,8 @@
 {%- capture authors_tag %}<a href={{ authors_route }}>Authors &rsaquo;</a>{% endcapture -%}
 {%- capture author_tag %}<a href={{ author_route }}>{{ author.name }} &rsaquo;</a>{% endcapture -%}
 {%- capture text_tag %}<a href={{ text_route }}>{{ text.title }}</a>{%- endcapture -%}
-{%- capture breadcrumb_html %}{{ authors_tag }} {{ author_tag}} {{ text_tag }}{% endcapture -%}
+{%- if site.data.authors.size == 1 -%}
+  {%- capture breadcrumb_html %}{{ author_tag}} {{ text_tag }}{% endcapture -%}}
+{%- else -%}
+  {%- capture breadcrumb_html %}{{ authors_tag }} {{ author_tag}} {{ text_tag }}{% endcapture -%}}
+{%- endif -%}
